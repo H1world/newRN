@@ -3,33 +3,33 @@ import {
   Text,
   View,
   Image,
+  Alert,
   StatusBar,
   TextInput,
   StyleSheet,
   TouchableOpacity,
   TouchableHighlight,
   TouchableWithoutFeedback,
+  AppRegistry
 } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 import { loginStyle } from '../layout/loginStyle.js';
+import { RootStack } from '../../app/navigationPage/router';
 import { Button, List, Badge, InputItem } from 'antd-mobile';
-//测试mobx
-import AppState from '../../mobx/AppState';
-import { observer } from 'mobx-react';
-import { reaction } from 'mobx';
 import { GET, POST, apiBa} from '../../api/api';
-//实例化,导出
-const APPState = new AppState();
+import { inject, observer } from "mobx-react";
+@inject('homeStore')
 @observer
-//监听
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       show: false,
       show_2: false,
-      phoneNum: '',
+      phoneNum: '13581739246',
       passwordType: true,
-      passwordNum: '',
+      passwordNum: 'a123456',
       data: null
     }
   };
@@ -74,18 +74,20 @@ class Login extends React.Component {
   };
 
   async _onPress() {
-    let url = APPState.api + 'mobile/login/dologin';
+    let url = this.props.homeStore.api + 'mobile/login/dologin';
     let data = {
       accountname: this.state.phoneNum,
       password: this.state.passwordNum,
     }
-    const res = await apiBa(url, data,"POST"); 
+    const res = await apiBa(url, data,"POST");
     console.log(res)
-    if (res.data.result == "success"){
-      this._changeSaveData();
+    if (res.result == "success"){
       this.setState({
         data: res
-      })
+      });
+      this._changeSaveData();
+    }else{
+      Alert.alert(res.describe);
     }
   }; 
   
@@ -95,14 +97,12 @@ class Login extends React.Component {
   };
 
   selectionChange(event) {
-    // console.log(event);
     let length = (this.state.passwordNum).length
     event.nativeEvent.selection.start = length;
     event.nativeEvent.selection.end = length;
   };
 
   onReset() {
-    APPState.resetTimer();
   };
 
   render() {
@@ -125,7 +125,6 @@ class Login extends React.Component {
                   style={loginStyle.InputBox_img}
                 />
                 <TextInput style={loginStyle.inputText}
-                  // defaultValue= {this.state.phoneNum}
                   ref="textInput1"
                   defaultValue={this.state.phoneNum}
                   onChangeText={(text) => this.changeText('phone', text)}
@@ -149,13 +148,12 @@ class Login extends React.Component {
                 />
                 <TextInput
                   ref="textInput2"
-                  // selection={{0}}
                   onSelectionChange={(event) => this.selectionChange(event)}
                   defaultValue={this.state.passwordNum}
                   onChangeText={(text) => this.changeText('password', text)}
                   secureTextEntry={this.state.passwordType}
                   style={loginStyle.inputText}
-                  underlineColorAndroid='transparent' //设置下划线背景色透明 达到去掉下划线的效果
+                  underlineColorAndroid='transparent'
                   placeholder='请输入密码'
                   placeholderTextColor='rgba(255,255,255,.6)'
                   // selectionColor = '#b00'
@@ -193,15 +191,23 @@ class Login extends React.Component {
     );
   }
 //更改登录状态
-  _changeSaveData = () => {
+  _changeSaveData (){
+    let userData = this.state.data.data;
+    // this.props.navigation.navigate('Home', { title: '北京大学' })
+    
     var user = new Object();
-    user.routId = '2';
-    user.orgid = '';    //组织id
-    user.roleid = '';   //身份id
-    user.layer = '';    //认证id
-    user.orglist = '';  //组织列表
-    user.token = '';  //组织列表
-    global.MySorage._sava('token', user);
+    user.beOverdue = '2';
+    user.orgid = userData.orgid;                      //组织id
+    user.accountid = userData.accountid;
+    user.roleid = userData.roleid;                    //身份id
+    user.layer = userData.layer;                      //认证id
+    user.token = userData.xytoken;                    //组织列表
+    user.orgname = userData.orgname;                  //组织名称
+    user.userimage = userData.userimage;              //组织logo
+    user.username = userData.username;                //用户名称
+    global.MySorage._sava('userList', user);
+    this.props.navigation.navigate('Home')
+    // this.props.navigation.navigate('Home', { title: '北京大学' })
   };
 }
 export default Login;
