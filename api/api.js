@@ -3,44 +3,6 @@ import AppState from '../mobx/AppState';
 import { observer } from 'mobx-react';
 import { reaction } from 'mobx';
 
-function commonFetcdh(url, options, method, headers) {
-  // const searchStr = obj2String(options);
-  const searchStr = JSON.stringify(options);
-  const heade = '';
-  if(headers != ''){
-    header = new Headers({})
-  };
-  let initObj = {}
-  if (method === 'GET') { // 如果是GET请求，拼接url
-    url += '?' + searchStr
-    initObj = {
-      method: method,
-      credentials: 'include'
-    }
-  } else {
-    initObj = {
-      method: method,
-      credentials: 'include',
-      headers: heade,
-      body: searchStr
-    }
-  }
-  fetch(url, initObj).then((res) => {
-    return res.json()
-  }).then((res) => {
-    console.log(res)
-    return res    
-  })
-}
-
-function GET(url, options, headers) {
-  return commonFetcdh(url, options, 'GET', headers)
-}
-
-function POST(url, options, headers) {
-  return commonFetcdh(url, options, 'POST', headers)
-}
-
 async function apiBa(url, options, method) {
   // const searchStr = JSON.stringify(options);   
   let list = '';
@@ -73,7 +35,5 @@ async function apiBa(url, options, method) {
 
 
 export{
-  GET,
-  POST,
   apiBa
 }

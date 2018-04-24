@@ -3,22 +3,6 @@ import React, { Component } from 'react';
 import { AppRegistry, View, AsyncStorage  } from 'react-native';
 import Storage from 'react-native-storage';
 import SYNC from './sync';
-// let storage = new Storage({
-//   size: 1000,
-//   storageBackend: AsyncStorage,
-//   defaultExpires: null,
-//   enableCache: true,
-// })
-// exports.storage = storage;
-// // global.storage = storage;
-
-// storage.save({
-//   key: 'loginState', 
-//   data: {
-//     token: '1'
-//   },
-//   expires: null
-// });
 
 var storage;
 var defaultExpires = null;
@@ -38,10 +22,9 @@ export default class MySorage extends Component {
         // 你可以在构造函数这里就写好sync的方法
         // 或是写到另一个文件里，这里require引入
         // 或是在任何时候，直接对storage.sync进行赋值修改
-        sync: SYNC  // 这个sync文件是要你自己写的
+        sync: SYNC
       });
     }
-
     return storage;
   }
 
@@ -110,13 +93,13 @@ export default class MySorage extends Component {
         someFlag: someFlag,
       },
     }).then(ret => {
-
       callBack(ret);
       return ret;
     }).catch(err => {
       //如果没有找到数据且没有sync方法，
       //或者有其他异常，则在catch中返回
       console.warn(err.message);
+      console.log(err)
       switch (err.name) {
         case 'NotFoundError':
           // TODO;

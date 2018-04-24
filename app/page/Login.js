@@ -16,7 +16,7 @@ import { StackNavigator } from 'react-navigation';
 import { loginStyle } from '../layout/loginStyle.js';
 import { RootStack } from '../../app/navigationPage/router';
 import { Button, List, Badge, InputItem } from 'antd-mobile';
-import { GET, POST, apiBa} from '../../api/api';
+import {apiBa} from '../../api/api';
 import { inject, observer } from "mobx-react";
 @inject('homeStore')
 @observer
@@ -27,9 +27,9 @@ class Login extends React.Component {
     this.state = {
       show: false,
       show_2: false,
-      phoneNum: '13581739246',
+      phoneNum: 'bjdx',
       passwordType: true,
-      passwordNum: 'a123456',
+      passwordNum: 'bjdx5004',
       data: null
     }
   };
@@ -80,7 +80,6 @@ class Login extends React.Component {
       password: this.state.passwordNum,
     }
     const res = await apiBa(url, data,"POST");
-    console.log(res)
     if (res.result == "success"){
       this.setState({
         data: res
@@ -194,7 +193,6 @@ class Login extends React.Component {
   _changeSaveData (){
     let userData = this.state.data.data;
     // this.props.navigation.navigate('Home', { title: '北京大学' })
-    
     var user = new Object();
     user.beOverdue = '2';
     user.orgid = userData.orgid;                      //组织id

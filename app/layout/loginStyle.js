@@ -1,18 +1,24 @@
 import { StyleSheet, Dimensions, hairlineWidth} from 'react-native';
-// import { comPany } from '../algorithm/company';
 import { setSpText, scaleSize } from '../algorithm/company';
-
 const { width, height } = Dimensions.get('window');
-
-
 export const loginStyle = StyleSheet.create({
+  indexBackground: {
+    height: height,
+    width: width,
+    backgroundColor: '#259461',
+  },
+  indexBackgroundImg:{
+    height: height,
+    width: width,
+  },
+  footImage: {
+    width: scaleSize(57),
+    height: scaleSize(57),
+  },
   container: {
     height: height,
     width: width,
     backgroundColor: '#259461',
-    // flex: 1,
-    // flexDirection: 'row',
-    // justifyContent: 'center',
     alignItems: 'center',
   },
 
