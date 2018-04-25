@@ -45,6 +45,9 @@ export default class MyScreen extends Component {
     })
   };
   
+  _goRouter(item) {
+    this.props.navigation.navigate(item.router)    
+  }
   // static navigationOptions = ({ navigation }) => ({
     // title: `Chat with ${this.state.data.data.orgname}`,
   // }); 
@@ -52,19 +55,19 @@ export default class MyScreen extends Component {
   render() {
     const { params } = this.props.navigation.state;
     let bannerList = [
-      { name: '总览', uri: bannericon1},
-      { name: '项目汇总', uri: bannericon2},
-      { name: '成绩排名', uri: bannericon3},
+      { name: '总览', uri: bannericon1, router:'overview'},
+      { name: '项目汇总', uri: bannericon2, router: 'overview'},
+      { name: '成绩排名', uri: bannericon3, router: 'overview'},
     ];
     let iconList = bannerList.map((item,index) => {
       return (
-        <View style={homeStyle.bannerBox} key = {index}>
+        <TouchableOpacity style={homeStyle.bannerBox} key={index} onPress={() => this._goRouter(item)}>
           <Image
             source={item.uri}
             style={homeStyle.bannerIcon}
           />
           <Text style={homeStyle.bannerIconFont}> {item.name} </Text>
-        </View>
+        </TouchableOpacity>
         )
     });
     let toolList = [
@@ -74,17 +77,14 @@ export default class MyScreen extends Component {
       { name: '教学', uri: toolIcon4 },
     ];
     let trLength = Math.ceil(toolList.length / 3);
-    // for (let i = 0; i < trLength; i++){
-    //   return <View style={homeStyle.toolList}>
-
-    //   </View>     
-    // }
-    
-    // let toolDomList = toolList.map((item, index)=>{
-
-    // })
-    
-    
+    let toolEd = [];
+    //计算行数
+    for (let i = 0; i < trLength; i++){
+      toolEd.push(
+        <View style={homeStyle.toolList}>
+        </View>   
+      );
+    }
     return (
       <View style={{backgroundColor:'#fff'}}>
         <View style={homeStyle.homeTop}>
@@ -110,27 +110,39 @@ export default class MyScreen extends Component {
         <View style={homeStyle.toolList}>
           <View style={homeStyle.toolBox}>
             <Image
-              source={require('../image/background.png')}
+              source={require('../image/icon_xuqui.png')}
               style={homeStyle.toolIcon}
             />
-            <Text style={homeStyle.toolFont}> 1 </Text>
+            <Text style={homeStyle.toolFont}> 需求 </Text>
           </View>
           <View style={homeStyle.toolBox}>
             <Image
-              source={require('../image/background.png')}
+              source={require('../image/icon_xiangmu.png')}
               style={homeStyle.toolIcon}
             />
-            <Text style={homeStyle.toolFont}> 2 </Text>
+            <Text style={homeStyle.toolFont}> 项目 </Text>
           </View>
-          <View style={homeStyle.toolBox}>
+          <View style={homeStyle.toolBoxNull}>
             <Image
-              source={require('../image/background.png')}
+              source={require('../image/icon_saishi.png')}
               style={homeStyle.toolIcon}
             />
-            <Text style={homeStyle.toolFont}> 3 </Text>
+            <Text style={homeStyle.toolFont}> 赛事 </Text>
           </View>
         </View>
-        
+        <View style={homeStyle.toolList}>
+          <View style={homeStyle.toolBox}>
+            <Image
+              source={require('../image/icon_jiaoxue.png')}
+              style={homeStyle.toolIcon}
+            />
+            <Text style={homeStyle.toolFont}> 教学 </Text>
+          </View>
+          <View style={homeStyle.toolBox}>
+          </View>
+          <View style={homeStyle.toolBoxNull}>
+          </View>
+        </View>
       </View>
     )
     

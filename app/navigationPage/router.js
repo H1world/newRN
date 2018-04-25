@@ -12,6 +12,8 @@ import MyHome from '../page/Home';
 import MyProject from '../page/project/Project';
 import Sapien from '../page/othered/HomoSapiens';
 import Information from '../page/my/MyInformation';
+import Overview from '../page/indexpage/overView';
+
 import { loginStyle } from '../layout/loginStyle.js';
 import { setSpText, scaleSize } from '../algorithm/company';
 
@@ -102,6 +104,10 @@ export const RootStack = StackNavigator({
   Home: {
     screen: MainScreenNavigator,
     mode: 'card',
+    navigationOptions: {
+      gesturesEnabled: false,
+      headerTintColor: 'black',
+    },
   },
   Login: {
     screen: Login,
@@ -111,5 +117,13 @@ export const RootStack = StackNavigator({
     },
     mode: 'card',
   },
+  overview:{
+    screen: Overview,
+    navigationOptions: {
+      headerTintColor: 'black',
+      header: null,
+      // gesturesEnabled: false,
+    },
+  }
   
 });
