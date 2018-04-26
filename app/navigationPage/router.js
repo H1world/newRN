@@ -13,6 +13,7 @@ import MyProject from '../page/project/Project';
 import Sapien from '../page/othered/HomoSapiens';
 import Information from '../page/my/MyInformation';
 import Overview from '../page/indexpage/overView';
+import Demandindex from '../page/indexpage/demandI'
 
 import { loginStyle } from '../layout/loginStyle.js';
 import { setSpText, scaleSize } from '../algorithm/company';
@@ -23,10 +24,10 @@ const MainScreenNavigator = TabNavigator({
     navigationOptions: {
       header: null,
       tabBarLabel: '首页',
-      tabBarIcon: ({ tintColor }) => (
+      tabBarIcon: ({ focused, tintColor }) => (
         <Image
-          source={require('../image/icon_home_grey.png')}
-          style={[ { tintColor: tintColor }, loginStyle.footImage ]}
+          source={focused ? require('../image/icon_home_green3x.png') : require('../image/icon_home_grey.png') }
+          style={[loginStyle.footImage]}
         />
       ),
     }
@@ -36,10 +37,10 @@ const MainScreenNavigator = TabNavigator({
     navigationOptions: {
       header: null,
       tabBarLabel: '项目',
-      tabBarIcon: ({ tintColor }) => (
+      tabBarIcon: ({ focused,tintColor }) => (
         <Image
-          source={require('../image/icon_xiangmu_grey.png')}
-          style={[{ tintColor: tintColor }, loginStyle.footImage]}
+          source={focused ? require('../image/icon_xiangmu_green3x.png') : require('../image/icon_xiangmu_grey.png')}
+          style={[loginStyle.footImage]}
         />
       ),
     }
@@ -49,10 +50,10 @@ const MainScreenNavigator = TabNavigator({
     navigationOptions: {
       header: null,
       tabBarLabel: '投智人',
-      tabBarIcon: ({ tintColor }) => (
+      tabBarIcon: ({ focused,tintColor }) => (
         <Image
-          source={require('../image/icon_touzhiren_grey.png')}
-          style={[{ tintColor: tintColor }, loginStyle.footImage]}
+          source={focused ? require('../image/icon_touzhiren_green3x.png') : require('../image/icon_touzhiren_grey.png')}        
+          style={[loginStyle.footImage]}
         />
       ),
     }
@@ -62,7 +63,7 @@ const MainScreenNavigator = TabNavigator({
     navigationOptions: {
       header: null,
       tabBarLabel: '我的',
-      tabBarIcon: ({ tintColor }) => (
+      tabBarIcon: ({ focused,tintColor }) => (
         <Image
           source={require('../image/icon_home_grey.png')}
           style={[{ tintColor: tintColor }, loginStyle.footImage]}
@@ -96,7 +97,6 @@ export const RootStack = StackNavigator({
   Index:{
     screen: IndexPage,
     navigationOptions: {
-      header: null,
       gesturesEnabled: false,
       animationEnabled: false,  
     }
@@ -111,19 +111,18 @@ export const RootStack = StackNavigator({
   },
   Login: {
     screen: Login,
-    navigationOptions: {
-      header: null,
-      gesturesEnabled: false,
-    },
     mode: 'card',
   },
   overview:{
     screen: Overview,
-    navigationOptions: {
-      headerTintColor: 'black',
+  },
+  demoand: {
+    screen: Demandindex,
+  },
+},
+{
+  navigationOptions: {
       header: null,
-      // gesturesEnabled: false,
     },
   }
-  
-});
+);

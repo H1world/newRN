@@ -1,9 +1,11 @@
-
+import {
+  Alert,
+} from 'react-native';
 import AppState from '../mobx/AppState';
 import { observer } from 'mobx-react';
 import { reaction } from 'mobx';
 
-async function apiBa(url, options, method) {
+async function apiBa(url, options, method, xytoken, propsed) {
   // const searchStr = JSON.stringify(options);   
   let list = '';
   for(let i in options){
@@ -11,7 +13,8 @@ async function apiBa(url, options, method) {
   }
   const heade = {
     'Accept': '*/*',
-    'Content-Type': 'application/x-www-form-urlencoded'
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'xytoken': xytoken,
   };
   let initObj = {}
   if (method === 'GET') {    //get请求暂未定义.
@@ -30,8 +33,15 @@ async function apiBa(url, options, method) {
   }
   const response = await fetch(url, initObj);
   const data = await response.json();
+  if (data.code == '1000'){             //如果后台返回了'1000' 清空内存数据 跳转到注册页
+    global.MySorage._remove('userList');
+    propsed.navigation.navigate('Login');
+    Alert.alert('登录失效，请重新登录。');    
+    return;
+  }
   return data;
-}
+};
+
 
 
 export{

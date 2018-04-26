@@ -88,7 +88,29 @@ export const homeStyle = StyleSheet.create({
   },
   overViewStyle:{
     alignItems: 'center',
-    // justifyContent: 'center', 
+  },
+  font_36_333:{
+    fontSize: scaleSize(36),
+    color: '#333',
+  },
+  font_30_999: {
+    fontSize: scaleSize(30),
+    color: '#999',
+  },
+  font_30_333:{
+    fontSize: scaleSize(30),
+    color: '#333',
+  },
+  marginB_15:{
+    marginBottom: scaleSize(15),
+  },
+  marginR_15: {
+    marginRight: scaleSize(15),
+  },
+  border_yellow:{
+    borderWidth: scaleSize(1),
+    borderColor: '#f28109',
+    borderRadius: scaleSize(4),
   },
   overViewBox:{
     // height: scaleSize(600),
@@ -137,5 +159,89 @@ export const homeStyle = StyleSheet.create({
     backgroundColor:'#dedede',
     marginTop: scaleSize(56),
     marginBottom: scaleSize(56),
+  },
+  //echarts 样式
+  echartBox:{
+    borderWidth: scaleSize(1),
+    borderColor: '#f4f4f4',
+    shadowColor: '#999',
+    shadowOffset: { width: -2, height: 3 },
+    shadowRadius: 5,
+    shadowOpacity: .4,
+    backgroundColor:'#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  echartList:{
+    width: width - scaleSize(100),
+  },
+  echartTitle:{
+    fontSize: scaleSize(42),
+    color: '#333',
+    marginTop: scaleSize(63),
+  },
+  //demand style
+  demandList:{
+    shadowColor: '#999',
+    shadowOffset: { width: -2, height: 3 },
+    shadowRadius: 5,
+    shadowOpacity: .4,
+    backgroundColor: '#fff',
+    marginBottom: scaleSize(68),
+  },
+  demandInline:{
+    flexDirection: 'row',
+    marginLeft: scaleSize(34),
+    marginRight: scaleSize(34),
+    marginTop: scaleSize(24),
+  },
+  demandImg:{
+    width: scaleSize(82),
+    height: scaleSize(82),
+    borderRadius: scaleSize(41),
+    marginRight: scaleSize(20),
+  },
+  demandNameT:{
+    flex:1,
+    height: scaleSize(82),
+    justifyContent: 'center',
+  },
+  demandInline_2F:{
+    flex: 1,
+    fontSize: scaleSize(48),
+    color:'#333',
+    // marginBottom: scaleSize(30), 
+  },
+  demandInline_3_font:{
+    fontSize: scaleSize(30),
+    color: '#f28109',
+    width: scaleSize(84),
+    textAlign: 'center',
+    lineHeight: scaleSize(45),
+  },
+  demandInline_3F_1:{
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    marginRight: scaleSize(60),
+  },
+  demandInline_3F:{
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  demandLine:{
+    flex: 1,
+    height: scaleSize(1),
+    justifyContent: 'center',
+    backgroundColor:'#dedede',
+  },
+  demandBot:{
+    marginBottom: scaleSize(24),
+  },
+  demandDem:{
+    position: 'absolute',
+    right: scaleSize(24),
+    top: scaleSize(24),
   }
+
 })

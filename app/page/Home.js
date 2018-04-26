@@ -22,6 +22,10 @@ import toolIcon1 from '../image/icon_xuqui.png';
 import toolIcon2 from '../image/icon_xiangmu.png';
 import toolIcon3 from '../image/icon_saishi.png';
 import toolIcon4 from '../image/icon_jiaoxue.png';
+import { inject, observer } from "mobx-react";
+@inject('homeStore')
+@observer
+
 export default class MyScreen extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +35,6 @@ export default class MyScreen extends Component {
     this._readData = this._readData.bind(this);
   }
 
-  
   // componentWillMount
   componentDidMount() {
     this._readData();
@@ -42,11 +45,16 @@ export default class MyScreen extends Component {
       this.setState({
         data: data,
       });
+      this.props.homeStore.setBasicData(data);
     })
   };
   
   _goRouter(item) {
     this.props.navigation.navigate(item.router)    
+  }
+
+  _goRouter_vo(routerId) {
+    this.props.navigation.navigate(routerId) 
   }
   // static navigationOptions = ({ navigation }) => ({
     // title: `Chat with ${this.state.data.data.orgname}`,
@@ -108,13 +116,13 @@ export default class MyScreen extends Component {
         </View>
         {/* 第三块 */}
         <View style={homeStyle.toolList}>
-          <View style={homeStyle.toolBox}>
+          <TouchableOpacity style={homeStyle.toolBox} onPress={() => this._goRouter_vo('demoand')}>
             <Image
               source={require('../image/icon_xuqui.png')}
               style={homeStyle.toolIcon}
             />
             <Text style={homeStyle.toolFont}> 需求 </Text>
-          </View>
+          </TouchableOpacity>
           <View style={homeStyle.toolBox}>
             <Image
               source={require('../image/icon_xiangmu.png')}

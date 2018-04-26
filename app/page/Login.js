@@ -79,7 +79,7 @@ class Login extends React.Component {
       accountname: this.state.phoneNum,
       password: this.state.passwordNum,
     }
-    const res = await apiBa(url, data,"POST");
+    const res = await apiBa(url, data, "POST", '', this.props);
     if (res.result == "success"){
       this.setState({
         data: res
