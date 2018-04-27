@@ -172,18 +172,6 @@ class Login extends React.Component {
               </Text>
               </TouchableHighlight>
             </View>
-            {/* <Text>
-              当前的值是: {APPState.timer}
-            </Text>
-            <TouchableOpacity onPress={() => { this.onReset() }}>
-              <Text style={{ backgroundColor: 'green', color: 'white', marginLeft: 30, fontSize: 20 }}>
-                重置
-              </Text>
-            </TouchableOpacity> */}
-            {/* <TouchableOpacity style={{ marginTop: 20, width: 60, height: 40, backgroundColor: '#aaaa00' }}
-              onPress={this._changeSaveData}>
-              <Text>修改数据</Text>
-            </TouchableOpacity> */}
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -203,9 +191,9 @@ class Login extends React.Component {
     user.orgname = userData.orgname;                  //组织名称
     user.userimage = userData.userimage;              //组织logo
     user.username = userData.username;                //用户名称
+    user.allpors = this.props;
     global.MySorage._sava('userList', user);
     this.props.navigation.navigate('Home')
-    // this.props.navigation.navigate('Home', { title: '北京大学' })
   };
 }
 export default Login;

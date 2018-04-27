@@ -44,8 +44,8 @@ export default class DemandIndex extends Component {
           titleItem_2={() => this.renderItem_2()}
           backFunc={() => this.backClick()}
         />
-        {this.state.tabtype == false ? <DemandSchool /> : <DemandRJ /> }
-                
+        {this.state.tabtype == false ? 
+        <DemandSchool thisProps={() => this.props}/> : <DemandRJ thisProps={() => this.props}/>}          
       </View>  
     )
   }

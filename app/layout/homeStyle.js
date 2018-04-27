@@ -182,12 +182,18 @@ export const homeStyle = StyleSheet.create({
   },
   //demand style
   demandList:{
+    flex:1,
     shadowColor: '#999',
     shadowOffset: { width: -2, height: 3 },
     shadowRadius: 5,
     shadowOpacity: .4,
     backgroundColor: '#fff',
-    marginBottom: scaleSize(68),
+    // borderWidth:1,
+    // borderColor:'#b00',
+    marginBottom: scaleSize(30),
+    alignItems: 'center',
+    justifyContent: 'center',
+    
   },
   demandInline:{
     flexDirection: 'row',
@@ -242,6 +248,18 @@ export const homeStyle = StyleSheet.create({
     position: 'absolute',
     right: scaleSize(24),
     top: scaleSize(24),
-  }
+  },
+  list: {
+    width:width,
+    paddingTop:10,
+    marginBottom: 10
+  },
+  footer: {
+    flexDirection: 'row',
+    height: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
 
 })

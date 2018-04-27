@@ -13,7 +13,8 @@ import MyProject from '../page/project/Project';
 import Sapien from '../page/othered/HomoSapiens';
 import Information from '../page/my/MyInformation';
 import Overview from '../page/indexpage/overView';
-import Demandindex from '../page/indexpage/demandI'
+import Demandindex from '../page/indexpage/demandI';
+
 
 import { loginStyle } from '../layout/loginStyle.js';
 import { setSpText, scaleSize } from '../algorithm/company';

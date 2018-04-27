@@ -5,6 +5,9 @@ import {
   Image,
 } from 'react-native';
 import { loginStyle } from '../layout/loginStyle.js';
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
+console.ignoredYellowBox = ['Remote debugger'];
 
 export default class Index extends Component {
   componentDidMount(){

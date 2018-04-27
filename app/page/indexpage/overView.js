@@ -33,8 +33,6 @@ export default class Overview extends Component {
   };
   componentDidMount() {
     this.getOrgTotalInfo();
-    // this.getProjectTrendStatisticsCountByOrgId();
-    // this.getRequirementCountByDate();
   };
   async getOrgTotalInfo() {
     let url = this.props.homeStore.api + 'mobile/system/getOrgTotalInfo';

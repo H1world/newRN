@@ -2,8 +2,7 @@ import {
   Alert,
 } from 'react-native';
 import AppState from '../mobx/AppState';
-import { observer } from 'mobx-react';
-import { reaction } from 'mobx';
+import {  observer } from 'mobx-react';
 
 async function apiBa(url, options, method, xytoken, propsed) {
   // const searchStr = JSON.stringify(options);   
