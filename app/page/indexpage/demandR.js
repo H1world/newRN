@@ -151,7 +151,7 @@ export default class DemandRJ extends Component {
           </View>
         </View>
         <TouchableOpacity style={[homeStyle.demandDem]} onPress={() => this.alert(item)}>
-          <Text>×</Text>
+          <Text style={homeStyle.delbtn}>×</Text>
         </TouchableOpacity>
       </View>
     </View>

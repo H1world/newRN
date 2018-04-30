@@ -130,13 +130,13 @@ export default class MyScreen extends Component {
             />
             <Text style={homeStyle.toolFont}> 项目 </Text>
           </View>
-          <View style={homeStyle.toolBoxNull}>
+          <TouchableOpacity style={homeStyle.toolBoxNull} onPress={() => this._goRouter_vo('match')}>
             <Image
               source={require('../image/icon_saishi.png')}
               style={homeStyle.toolIcon}
             />
             <Text style={homeStyle.toolFont}> 赛事 </Text>
-          </View>
+          </TouchableOpacity>
         </View>
         <View style={homeStyle.toolList}>
           <View style={homeStyle.toolBox}>

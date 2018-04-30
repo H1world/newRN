@@ -112,6 +112,10 @@ export const homeStyle = StyleSheet.create({
     borderColor: '#f28109',
     borderRadius: scaleSize(4),
   },
+  delbtn:{
+    color:'#999',
+    fontSize: scaleSize(50)
+  },
   overViewBox:{
     // height: scaleSize(600),
     shadowColor: '#999',
@@ -188,12 +192,9 @@ export const homeStyle = StyleSheet.create({
     shadowRadius: 5,
     shadowOpacity: .4,
     backgroundColor: '#fff',
-    // borderWidth:1,
-    // borderColor:'#b00',
     marginBottom: scaleSize(30),
     alignItems: 'center',
     justifyContent: 'center',
-    
   },
   demandInline:{
     flexDirection: 'row',
@@ -216,7 +217,6 @@ export const homeStyle = StyleSheet.create({
     flex: 1,
     fontSize: scaleSize(48),
     color:'#333',
-    // marginBottom: scaleSize(30), 
   },
   demandInline_3_font:{
     fontSize: scaleSize(30),

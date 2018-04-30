@@ -100,9 +100,7 @@ export default class AlertBox extends Component {
           <View
             style={alertBox.alertList}>
             <View style={alertBox.alertList_ine}>
-              <View style={alertBox.alertList_line}>
-                <Text style={alertBox.alertList_title}> {this.alertTextF()} </Text>
-              </View>
+              <Text style={alertBox.alertList_title}> {this.alertTextF()} </Text>
               <View style={alertBox.alertList_line}>
                 <TouchableOpacity style={[alertBox.alertList_btn,{backgroundColor:'#fff'}]} onPress={() => this.overBox()}>
                   <Text style={{ color: '#999', fontSize: scaleSize(48)}}>取消</Text>
@@ -139,13 +137,13 @@ const alertBox = StyleSheet.create({
     flexDirection: 'row',
   },
   alertList_title: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: '#fff',
     color: '#333',
     fontSize: scaleSize(48),
-    marginTop: scaleSize(48),
-    marginLeft: scaleSize(48),
-
+    paddingTop: scaleSize(48),
+    paddingLeft: scaleSize(48),
+    height: scaleSize(240), 
   },
   alertList_btn: {
     flex: 1,
@@ -153,7 +151,7 @@ const alertBox = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderTopWidth: scaleSize(1),
-    borderTopColor: '#999',
+    borderTopColor: '#999',   
   },
 
 })

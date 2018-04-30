@@ -14,7 +14,7 @@ import Sapien from '../page/othered/HomoSapiens';
 import Information from '../page/my/MyInformation';
 import Overview from '../page/indexpage/overView';
 import Demandindex from '../page/indexpage/demandI';
-
+import matchPage from '../page/match/matchIndex';
 
 import { loginStyle } from '../layout/loginStyle.js';
 import { setSpText, scaleSize } from '../algorithm/company';
@@ -119,6 +119,9 @@ export const RootStack = StackNavigator({
   },
   demoand: {
     screen: Demandindex,
+  },
+  match: {
+    screen: matchPage,
   },
 },
 {
