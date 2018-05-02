@@ -4,6 +4,7 @@ class HomeStore {
   @observable location = ''; //定位
   // @observable api = 'http://192.168.1.214:9199/tzq/'; //API
   @observable api = 'http://test.xytzq.cn:9199/tzq/'; 
+  // @observable api = 'https://www.xytzq.cn:9443/tzq/'; 
   @observable basicData = '';
   @action
   setBasicData(info) {

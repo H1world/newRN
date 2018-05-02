@@ -38,6 +38,7 @@ export const loginStyle = StyleSheet.create({
   InputBox_insid:{
     flexDirection: 'row',
     width: width - scaleSize(180),
+    height: scaleSize(148),    
     borderBottomWidth: scaleSize(1),
     borderBottomColor:'#fff',
   },

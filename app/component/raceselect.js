@@ -153,7 +153,6 @@ export default class ReceSelect extends Component {
     this.setState({
       visible: false,
       visible_2: false
-      
     })
   };
   hide_2() {
@@ -174,19 +173,49 @@ export default class ReceSelect extends Component {
       return this.props.listTitle();
     }
   };
+  fatherThis() {
+    if (this.props._this === undefined) { return }
+    else {
+      return this.props._this();
+    }
+  };
+
+  functionF() {
+    if (this.props.listFunction === undefined) { return }
+    else {
+      return this.props.listFunction();
+    }
+  };
+
   changeColor(item){
     this.setState({
       changeColorDe_1: item,
       leftTitle: item.yearname,
       titleColor: true,
+      visible: false,
+      visible_2: false,
     })
+    let _this = this.fatherThis();
+    _this.setState({
+      yearData: item.year,
+      // pageNum:1,
+    });
+    this.props.listFunction(item.year, _this.state.stateData, 1)
   };
   changeColor_2(item) {
     this.setState({
       changeColorDe_2: item,
       rightTitle: item.statename,
       titleColor_2:true,
+      visible: false,
+      visible_2: false
+    });
+    let _this = this.fatherThis();
+    _this.setState({
+      stateData: item.state,
+      // pageNum: 1,
     })
+    this.props.listFunction(_this.state.yearData, item.state, 1)
   };
 
   render() {

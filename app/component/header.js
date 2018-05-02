@@ -39,6 +39,10 @@ const { width, height } = Dimensions.get('window');
      fontSize: scaleSize(54),
      color: '#333',
    },
+   headerRight:{
+     fontSize: scaleSize(42),
+     color: '#259461',
+   }
  })
 // class Header extends Component
 export default class Header extends Component{
@@ -58,6 +62,11 @@ export default class Header extends Component{
     return this.props.backFunc();
   };
 
+  headerRight() {
+    if (this.props.headRight === undefined) return;
+    return this.props.headRight();
+  };
+
   backGo() {
     let _this = this.backBtnFunc();
     _this.props.navigation.goBack();  
@@ -65,7 +74,7 @@ export default class Header extends Component{
 
   render() {
     return (
-      <View>
+      <View style={{ backgroundColor: '#fff'}}>
         {Platform.OS === 'ios' ? <View style={headerStyle.topHeight}></View> : null}
         <View style={headerStyle.headerBox}>
           <TouchableOpacity onPress={() => this.backGo()}>
@@ -75,9 +84,11 @@ export default class Header extends Component{
             />
           </TouchableOpacity>
           <View style={headerStyle.headerText}>
-            <Text style={headerStyle.titleFont}>{this.renderItem()}</Text>          
+            <Text style={headerStyle.titleFont} numberOfLines={1}>{this.renderItem()}</Text>          
           </View>
-          
+          <View>
+            {this.headerRight() == true ? <Text style={headerStyle.headerRight}>确定</Text> : null}
+          </View>
         </View>
       </View>
     );

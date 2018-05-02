@@ -84,7 +84,6 @@ export default class DemandSchool extends Component {
             pageName={() => '本校需求'}
           />
           : null}
-          <View style={[homeStyle.overViewStyle]}>
             <FlatList
               data={this.state.data}
               renderItem={this.renderMovie}
@@ -96,7 +95,6 @@ export default class DemandSchool extends Component {
               refreshing={this.state.refreshing}
               keyExtractor={this._extraUniqueKey}
             />
-          </View>
       </View>
     )
   }

@@ -15,6 +15,9 @@ import Information from '../page/my/MyInformation';
 import Overview from '../page/indexpage/overView';
 import Demandindex from '../page/indexpage/demandI';
 import matchPage from '../page/match/matchIndex';
+import matchEdit from '../page/match/matchedit';
+import matchAdmin from '../page/match/matchadmin';
+import reviewProgress from '../page/match/ReviewProgress';
 
 import { loginStyle } from '../layout/loginStyle.js';
 import { setSpText, scaleSize } from '../algorithm/company';
@@ -122,6 +125,15 @@ export const RootStack = StackNavigator({
   },
   match: {
     screen: matchPage,
+  },
+  matchedit: {
+    screen: matchEdit,
+  },
+  matchadmin: {
+    screen: matchAdmin,
+  },
+  reviewprogress: {
+    screen: reviewProgress,
   },
 },
 {
