@@ -12,7 +12,8 @@ import {
   ImageBackground,
   ScrollView
 } from 'react-native';
-import { Accordion, List } from 'antd-mobile';
+import { Table, TableWrapper, Row, Rows, Col  } from 'react-native-table-component';
+// import { Accordion, List } from 'antd-mobile';
 import Header from '../../component/header';
 import Mask from '../../component/Mask';
 import { matchStyle } from '../../layout/matchStyle';
@@ -26,11 +27,35 @@ export default class reviewProgress extends Component {
     super(props);
     this.state = {
       beforData: this.props.homeStore.basicData,
+      date:'',
+      tableHead: ['评审方式', '联系方式', '已评', '未评', '进度'],
+      tableData: [
+        ['周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦', '12333333333', '10', '10', '25%'],
+        ['周杰伦', '12333333333', '10', '10', '25%'],
+        ['周杰伦', '12333333333', '10', '10', '25%'],
+      ]
     }
   };
 
   componentDidMount() {
+    this.gitRPlist()
+  };
 
+  async gitRPlist() {
+    let getprojectgameid = this.props.homeStore.projectgameid;
+    let url = this.props.homeStore.api + 'mobile/system/getRaterPingProcessByProjectGameId';
+    let data = {
+      projectgameid: getprojectgameid
+    };
+    const res = await apiBa(url, data, "POST", this.state.beforData.token, this.props);
+    console.log(res)
+    if (res.result == "success") {
+      this.setState({
+        date: res.data,
+      });
+    } else {
+      Alert.alert(res.describe);
+    };
   }
 
   onChange = (key) => {
@@ -38,7 +63,43 @@ export default class reviewProgress extends Component {
   };
 
   render() {
-    
+    const state = this.state;
+    let datelist = [];
+    if (this.state.date != ''){
+      datelist = this.state.date.map((item,index)=>{
+        return(
+          <View style={matchStyle.RP_list}>
+            <View style={[matchStyle.width_36]}>
+              <View style={matchStyle.RP_listBox}>
+                <View style={matchStyle.RP_lb_ine}>
+                  <Image
+                    source={require('../../image/icon_home_green3x.png')}
+                    style={[matchStyle.RP_icon, matchStyle.mr_27]}
+                  />
+                  <Text style={matchStyle.fz_42_333}>{item.projectclassname}</Text>
+                </View>
+                <View style={[matchStyle.RP_lb_ine, matchStyle.fl_R]}>
+                  <Text style={[matchStyle.fz_42_333, matchStyle.mr_27]}>50%</Text>
+                  <Image
+                    source={require('../../image/icon_home_green3x.png')}
+                    style={matchStyle.RP_icon_2}
+                  />
+                </View>
+              </View>
+              <View style={matchStyle.RP_CL}>
+                <Text style={matchStyle.classTitle}>第一组</Text>
+                <Table borderStyle={{ borderWidth: 0 }} style={matchStyle.table}>
+                  <TableWrapper flexArr={[2, 2, 1, 1, 1]}>
+                    <Row flexArr={[2, 2, 1, 1, 1]} data={this.state.tableHead} style={matchStyle.table_title} textStyle={[matchStyle.fz_42_333, matchStyle.text_cen]} />
+                    <Rows data={this.state.tableData} flexArr={[2, 2, 1, 1, 1]} style={matchStyle.table_fontBox} textStyle={[matchStyle.text_cen, matchStyle.table_font]} numberOfLines={2} />
+                  </TableWrapper>
+                </Table>
+              </View>
+            </View>
+          </View>
+        )
+      })
+    }
     return (
       <View style={{ backgroundColor: '#fff', flex: 1 }}>
         <Header
@@ -61,24 +122,38 @@ export default class reviewProgress extends Component {
         </Accordion> */}
         <View style={matchStyle.width_line}></View>
         <View style={matchStyle.width_box}>
-          <View style={matchStyle.RP_list}>
-            <View style={matchStyle.RP_listBox}>
-              <View style={matchStyle.RP_lb_ine}>
-                <Image
-                  
-                  style={matchStyle.RP_icon}
-                />
-                <Text style={matchStyle.fz_42_333}>创意类</Text>
+          {/* <View style={matchStyle.RP_list}>
+              <View style={[matchStyle.width_36]}>
+                <View style={matchStyle.RP_listBox}>
+                  <View style={matchStyle.RP_lb_ine}>
+                    <Image
+                      source={require('../../image/icon_home_green3x.png')}
+                      style={[matchStyle.RP_icon, matchStyle.mr_27]}
+                    />
+                    <Text style={matchStyle.fz_42_333}>创意类</Text>
+                  </View>
+                  <View style={[matchStyle.RP_lb_ine, matchStyle.fl_R]}>
+                    <Text style={[matchStyle.fz_42_333, matchStyle.mr_27]}>50%</Text>
+                    <Image
+                      source={require('../../image/icon_home_green3x.png')}
+                      style={matchStyle.RP_icon_2}
+                    />
+                  </View>
+                </View>
+                <View style={matchStyle.RP_CL}> 
+                  <Text style={matchStyle.classTitle}>第一组</Text>
+                  <Table borderStyle={{ borderWidth: 0 }} style={matchStyle.table}>
+                      <TableWrapper flexArr={[2, 2, 1, 1, 1]}>
+                        <Row flexArr={[2, 2, 1, 1, 1]} data={this.state.tableHead} style={matchStyle.table_title} textStyle={[matchStyle.fz_42_333, matchStyle.text_cen]}/>
+                        <Rows data={this.state.tableData} flexArr={[2, 2, 1, 1, 1]} style={matchStyle.table_fontBox} textStyle={[matchStyle.text_cen, matchStyle.table_font]} numberOfLines={2}/>
+                    </TableWrapper>
+                  </Table>
               </View>
-              <View style={matchStyle.RP_lb_ine}>
-                <Image
-
-                  style={matchStyle.RP_icon}
-                />
-                <Text style={matchStyle.fz_42_333}>创意类</Text>
-              </View>
-            </View>
-          </View>
+            </View>           
+          </View> */}
+          <ScrollView style={matchStyle.RP_sceoll}>
+          {datelist}
+          </ScrollView>
         </View>
 
       </View>

@@ -75,5 +75,5 @@ export const loginStyle = StyleSheet.create({
   buttonText:{
     fontSize: scaleSize(54),
     color: '#01a374',
-  }
+  },
 });

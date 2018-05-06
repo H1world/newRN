@@ -116,6 +116,9 @@ export const RootStack = StackNavigator({
   Login: {
     screen: Login,
     mode: 'card',
+    navigationOptions: {
+      gesturesEnabled: false,
+    },
   },
   overview:{
     screen: Overview,

@@ -6,9 +6,23 @@ class HomeStore {
   @observable api = 'http://test.xytzq.cn:9199/tzq/'; 
   // @observable api = 'https://www.xytzq.cn:9443/tzq/'; 
   @observable basicData = '';
+  @observable matchIndexDate = [];
+  @observable projectgameid = '';
+
+
   @action
   setBasicData(info) {
     this.basicData = info
+  }
+
+  @action
+  setmatchIndexDate(info) {
+    this.matchIndexDate = info
+  }
+
+  @action
+  setProjectgameid(info) {
+    this.projectgameid = info
   }
 
   @computed
@@ -16,6 +30,15 @@ class HomeStore {
     return this.basicData
   }
 
+  @computed
+  get getmatchIndexDate() {
+    return this.matchIndexDate
+  }
+
+  @computed
+  get getProjectgameid() {
+    return this.projectgameid
+  }
 }
 
 const homeStore = new HomeStore();

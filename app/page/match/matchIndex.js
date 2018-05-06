@@ -34,6 +34,7 @@ export default class matchPage extends Component {
       showFoot: 0,
       pageNum: 1,
       totalPage: '',
+      demo:''
     }
   };
   componentDidMount() {
@@ -76,18 +77,24 @@ export default class matchPage extends Component {
         });
       };
       if (res.data.page == 1) {
+        let matchDate = res.data.projectgamelist;
+        this.props.homeStore.setmatchIndexDate(matchDate);
         this.setState({
-          data: res.data.projectgamelist,
+          data: this.props.homeStore.matchIndexDate,
           loading: true,
           pageNum: 1,
         });
       } else {
-        this.state.data.push(...res.data.projectgamelist);
+        // this.props.homeStore.setmatchIndexDate(res.data.projectgamelist);
+        // let home_match = this.props.homeStore.matchIndexDate;
+        this.props.homeStore.matchIndexDate.push(...res.data.projectgamelist);
+        // console.log(this.props.homeStore.matchIndexDate.slice())
         this.setState({
           loading: true,
           pageNum: page,
         });
       }
+      // console.log(this.props.homeStore.matchIndexDate.slice())
       
     } else {
       Alert.alert(res.describe);
@@ -95,6 +102,7 @@ export default class matchPage extends Component {
   };
 
   render() {
+    this.state.data = this.props.homeStore.matchIndexDate.slice();
     return (
       <View style={{ backgroundColor: '#fff', flex: 1 }}>
         {this.state.loading == false ? <Mask /> : null}
@@ -110,6 +118,7 @@ export default class matchPage extends Component {
           listData={() => this.state.search}
           listFunction={(year, state, page) => this.getList(year, state, page)}
         />
+        <Text>{this.state.demo}</Text>
           <FlatList
             data={this.state.data}
             renderItem={this.renderMovie}
@@ -125,10 +134,18 @@ export default class matchPage extends Component {
     )
   };
 
+  goAdmin(item){
+    this.props.navigation.navigate('matchadmin', { match_name: item.projectgamename });
+    let projectgameid = item.projectgameid; 
+    this.props.homeStore.setProjectgameid(projectgameid);
+  };
+
   renderMovie = ({ item, index }) => (
     <View style={matchStyle.matchSubject}>
       <View style={matchStyle.matchinside}>
-        <TouchableOpacity style={matchStyle.matchinsidein} onPress={() => this.props.navigation.navigate('matchadmin', { match_name: item.projectgamename })}>
+        {/* this.props.navigation.navigate('matchadmin', {match_name: item.projectgamename}) */}
+        <TouchableOpacity style={matchStyle.matchinsidein} 
+        onPress={() => this.goAdmin(item)}>
           <Image
             source={{uri: item.projectgamelogo}}
             style={matchStyle.matchLogo}
@@ -158,8 +175,7 @@ export default class matchPage extends Component {
             </View>
             <View style={[matchStyle.matchNull, matchStyle.mg_42]}>
               <Text style={[matchStyle.mr_100, matchStyle.fz_36_666]}>
-                项目数：bug
-                {/* {item.projectnum} */}
+                项目数：{item.projectnum}
                     </Text>
               <Text style={[matchStyle.fz_36_666]}>
                 创建者：{item.creater}
@@ -167,7 +183,7 @@ export default class matchPage extends Component {
             </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={matchStyle.icon_editBox} onPress={() => this.props.navigation.navigate('matchedit', { match_id:item.projectgameid})}>
+        <TouchableOpacity style={matchStyle.icon_editBox} onPress={() => this.props.navigation.navigate('matchedit', { match_id: item.projectgameid })}>
           <Image
             source={require('../../image/icon_xiangmu_grey.png')}
             style={matchStyle.icon_edit}

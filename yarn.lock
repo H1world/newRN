@@ -4608,6 +4608,10 @@ react-native-swipeout@^2.2.2:
   dependencies:
     prop-types "^15.6.0"
 
+react-native-table-component@^1.1.8:
+  version "1.1.8"
+  resolved "http://registry.npm.taobao.org/react-native-table-component/download/react-native-table-component-1.1.8.tgz#4d0846d077914e1c608769e55a1a9e76ea32a90f"
+
 react-native@0.55.3:
   version "0.55.3"
   resolved "http://registry.npm.taobao.org/react-native/download/react-native-0.55.3.tgz#6ff1691bd0645d0480fba16377edb9dce5bd28c4"

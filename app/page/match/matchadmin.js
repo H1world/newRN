@@ -12,7 +12,6 @@ import {
   ImageBackground,
   ScrollView
 } from 'react-native';
-import { DatePicker, List } from 'antd-mobile';
 import Header from '../../component/header';
 import { matchStyle } from '../../layout/matchStyle';
 import { apiBa } from '../../../api/api';
@@ -29,7 +28,6 @@ export default class matchAdmin extends Component {
   };
 
   componentDidMount() {
-    
   }
 
   render() {

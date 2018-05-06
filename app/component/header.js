@@ -72,6 +72,12 @@ export default class Header extends Component{
     _this.props.navigation.goBack();  
   };
 
+  sureGo(){
+    if (this.renderItem() == '修改赛事信息'){
+      this.props.sureGo();
+    }
+  };
+
   render() {
     return (
       <View style={{ backgroundColor: '#fff'}}>
@@ -86,9 +92,9 @@ export default class Header extends Component{
           <View style={headerStyle.headerText}>
             <Text style={headerStyle.titleFont} numberOfLines={1}>{this.renderItem()}</Text>          
           </View>
-          <View>
+          <TouchableOpacity onPress={() => this.sureGo()}>
             {this.headerRight() == true ? <Text style={headerStyle.headerRight}>确定</Text> : null}
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     );

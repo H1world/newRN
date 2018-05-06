@@ -2,6 +2,7 @@ import {
   Alert,
 } from 'react-native';
 import AppState from '../mobx/AppState';
+import { Toast } from 'antd-mobile';
 import {  observer } from 'mobx-react';
 
 async function apiBa(url, options, method, xytoken, propsed) {
@@ -33,9 +34,12 @@ async function apiBa(url, options, method, xytoken, propsed) {
   const response = await fetch(url, initObj);
   const data = await response.json();
   if (data.code == '1000'){             //如果后台返回了'1000' 清空内存数据 跳转到注册页
+    Toast.fail('登录失效，请重新登录', 30);
     global.MySorage._remove('userList');
     propsed.navigation.navigate('Login');
-    Alert.alert('登录失效，请重新登录。');    
+    setTimeout(() => {
+      Toast.hide();
+    }, 3000);  
     return;
   }
   return data;
