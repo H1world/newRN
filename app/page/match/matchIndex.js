@@ -28,13 +28,12 @@ export default class matchPage extends Component {
       search:'',
       data:'',
       yearData: 0,
-      stateData: 0,
+      rightData: 0,
       refreshing: false,
       loading:false,
       showFoot: 0,
       pageNum: 1,
       totalPage: '',
-      demo:''
     }
   };
   componentDidMount() {
@@ -49,7 +48,7 @@ export default class matchPage extends Component {
       this.setState({
         search: res.data,
       });
-      this.getList(this.state.yearData, this.state.stateData,1)
+      this.getList(this.state.yearData, this.state.rightData,1)
     } else {
       Alert.alert(res.describe);
     };
@@ -85,17 +84,12 @@ export default class matchPage extends Component {
           pageNum: 1,
         });
       } else {
-        // this.props.homeStore.setmatchIndexDate(res.data.projectgamelist);
-        // let home_match = this.props.homeStore.matchIndexDate;
         this.props.homeStore.matchIndexDate.push(...res.data.projectgamelist);
-        // console.log(this.props.homeStore.matchIndexDate.slice())
         this.setState({
           loading: true,
           pageNum: page,
         });
       }
-      // console.log(this.props.homeStore.matchIndexDate.slice())
-      
     } else {
       Alert.alert(res.describe);
     };
@@ -114,11 +108,10 @@ export default class matchPage extends Component {
           select_1={() => '年份'}
           select_2={() => '状态'}
           _this={() => this}
-          listTitle={() => '赛事'}
-          listData={() => this.state.search}
+          leftList={() => this.state.search.yearlist}
+          rightList={() => this.state.search.statelist}
           listFunction={(year, state, page) => this.getList(year, state, page)}
         />
-        <Text>{this.state.demo}</Text>
           <FlatList
             data={this.state.data}
             renderItem={this.renderMovie}
@@ -208,7 +201,7 @@ export default class matchPage extends Component {
       pageNum: 1,
     });
     const timer = setTimeout(() => {
-      this.getList(this.state.yearData, this.state.stateData, 1)
+      this.getList(this.state.yearData, this.state.rightData, 1)
       this.setState({
         refreshing: false,
       });
@@ -222,7 +215,7 @@ export default class matchPage extends Component {
       this.state.pageNum++
     }
     this.setState({ showFoot: 2 });
-    this.getList(this.state.yearData, this.state.stateData, this.state.pageNum)
+    this.getList(this.state.yearData, this.state.rightData, this.state.pageNum)
   };
 
   _renderFooter = () => {

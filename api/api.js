@@ -33,6 +33,7 @@ async function apiBa(url, options, method, xytoken, propsed) {
   }
   const response = await fetch(url, initObj);
   const data = await response.json();
+
   if (data.code == '1000'){             //如果后台返回了'1000' 清空内存数据 跳转到注册页
     Toast.fail('登录失效，请重新登录', 30);
     global.MySorage._remove('userList');
@@ -42,11 +43,31 @@ async function apiBa(url, options, method, xytoken, propsed) {
     }, 3000);  
     return;
   }
+
+  if (data.result != "success") {
+    Toast.fail(data.describe, 30);
+    setTimeout(() => {
+      Toast.hide();
+    }, 2000);
+    return;
+  }
   return data;
 };
 
-
+function copy(obj1, obj2) {
+    var obj2 = obj2 || {};
+    for (var name in obj1) {
+      if (typeof obj1[name] === "object") {
+        obj2[name] = (obj1[name].constructor === Array) ? [] : {};
+        copy(obj1[name], obj2[name]);
+      } else {
+        obj2[name] = obj1[name];
+      }
+    }
+    return obj2;
+  }
 
 export{
-  apiBa
+  apiBa,
+  copy
 }

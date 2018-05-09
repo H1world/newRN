@@ -40,22 +40,22 @@ export default class matchAdmin extends Component {
         />
         <View style={matchStyle.adminPage}>
           <View style={matchStyle.adminRow}>
-            <View style={[matchStyle.adminBox, { backgroundColor: '#ccd0ff' }]}>
+            <TouchableOpacity style={[matchStyle.adminBox, { backgroundColor: '#ccd0ff' }]} onPress={() => this.props.navigation.navigate('scoringrules')}>
               <Text style={matchStyle.adminfont}>评审规则</Text>
               <Image
                 source={require('../../image/icon_guize.png')}
                 style={matchStyle.adminIcon}
               />
-            </View>
+            </TouchableOpacity>
             <View style={matchStyle.adminContent}>
             </View>
-            <View style={[matchStyle.adminBox, { backgroundColor: '#ccf8f1' }]}>
+            <TouchableOpacity style={[matchStyle.adminBox, { backgroundColor: '#ccf8f1' }]} onPress={() => this.props.navigation.navigate('signupproject')}>
               <Text style={matchStyle.adminfont}>报名项目</Text>
               <Image
                 source={require('../../image/icon_xiangmu3x.png')}
                 style={matchStyle.adminIcon}
               />
-            </View>
+            </TouchableOpacity>
           </View>
           <View style={matchStyle.adminRow}>
             <TouchableOpacity style={[matchStyle.adminBox, { backgroundColor: '#ccf8f1' }]} onPress={() => this.props.navigation.navigate('reviewprogress')}>
@@ -67,13 +67,13 @@ export default class matchAdmin extends Component {
             </TouchableOpacity>
             <View style={matchStyle.adminContent}>
             </View>
-            <View style={[matchStyle.adminBox, { backgroundColor: '#ccd0ff' }]}>
+            <TouchableOpacity style={[matchStyle.adminBox, { backgroundColor: '#ccd0ff' }]} onPress={() => this.props.navigation.navigate('grade')}>
               <Text style={matchStyle.adminfont}>成绩排名</Text>
               <Image
                 source={require('../../image/icon_paiming3x.png')}
                 style={matchStyle.adminIcon}
               />
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

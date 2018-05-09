@@ -17,12 +17,24 @@ export const matchStyle = StyleSheet.create({
   mr_27:{
     marginRight: scaleSize(27)
   },
+  mr_36: {
+    marginRight: scaleSize(36)
+  },
   mt_42:{
     marginTop: scaleSize(42),
   },
   mtb_48: {
     marginTop: scaleSize(48),
     marginBottom: scaleSize(48),
+  },
+  mb_10: {
+    marginBottom: scaleSize(10),
+  },
+  mb_170: {
+    marginBottom: scaleSize(170),
+  },
+  mb_304: {
+    marginBottom: scaleSize(304),
   },
   fz_30_999:{
     fontSize: scaleSize(30),
@@ -32,8 +44,17 @@ export const matchStyle = StyleSheet.create({
     paddingLeft: scaleSize(36),
     paddingRight: scaleSize(36),
   },
+  pb_0: {
+    paddingBottom: scaleSize(0),
+  },
+  width_500: {
+    width: scaleSize(500),
+  },
   width_36:{
     width: width - scaleSize(72),
+  },
+  borderTop_1:{
+    borderTopWidth:scaleSize(1),
   },
   fl_R:{
     justifyContent: 'flex-end'
@@ -61,6 +82,21 @@ export const matchStyle = StyleSheet.create({
     marginTop: scaleSize(36),
     paddingBottom: scaleSize(30),
   },
+  matchinside_2: {
+    width: width - scaleSize(72),
+    borderBottomWidth: 0,
+    flexDirection: 'row',
+    borderColor: '#dedede',
+    marginTop: scaleSize(36),
+    paddingTop: scaleSize(45),
+    paddingLeft: scaleSize(30),
+    paddingBottom: scaleSize(30),
+    backgroundColor: '#fff',
+    shadowColor: '#999',
+    shadowOffset: { width: -2, height: 3 },
+    shadowRadius: 5,
+    shadowOpacity: .4,
+  },
   matchinsidein:{
     flexDirection: 'row',
   },
@@ -72,6 +108,10 @@ export const matchStyle = StyleSheet.create({
   },
   matchTextBox:{
     height: scaleSize(172),
+    marginRight: scaleSize(100),
+  },
+  matchTextBox_2:{
+    height: scaleSize(259),
     marginRight: scaleSize(100),
   },
   matchNull:{
@@ -144,6 +184,12 @@ export const matchStyle = StyleSheet.create({
     alignItems: 'center',  
     marginBottom: 10,
   },
+  footerfont:{
+    color: '#999', 
+    fontSize: scaleSize(36), 
+    marginTop: scaleSize(10), 
+    marginBottom: scaleSize(10),
+  },
   adminPage:{
     width: width,
     borderTopWidth: scaleSize(1),
@@ -192,7 +238,6 @@ export const matchStyle = StyleSheet.create({
     borderColor: '#dedede',
     alignItems: 'center',
     width: width,
-    paddingBottom: scaleSize(30),
   },
   RP_listBox:{
     height:scaleSize(132),
@@ -214,10 +259,11 @@ export const matchStyle = StyleSheet.create({
     width: scaleSize(34),
     height: scaleSize(34),
   },
+  transformR_180:{
+    transform: [{ rotateX: '180deg' }]
+  },
   RP_CL: {
-    // backgroundColor:'#000',
-    // justifyContent: 'center',
-    // flex:1,
+    paddingBottom: scaleSize(30),
   },
   classTitle: {
     fontSize: scaleSize(42),
@@ -274,6 +320,93 @@ export const matchStyle = StyleSheet.create({
     backgroundColor: '#259461'
   },
   RP_sceoll:{
-    marginBottom:scaleSize(198)
+    marginBottom:scaleSize(10)
+  },
+  scoring:{
+    marginTop: scaleSize(30),
+  },
+  scoring_list:{
+    backgroundColor:'#fff',
+    height:scaleSize(132),
+    paddingLeft: scaleSize(36),
+    paddingRight: scaleSize(36),
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  scoring_list_text:{
+    flex:1,
+    fontSize:scaleSize(54),
+    color:'#333',
+    textAlign:'left'
+  },
+  scoring_text:{
+    fontSize: scaleSize(36),
+    color: '#999',
+    paddingLeft: scaleSize(36),
+    paddingRight: scaleSize(36),
+    paddingTop: scaleSize(24),
+    paddingBottom: scaleSize(24),
+  },
+  signUpP:{
+    flexDirection: 'row',
+    // justifyContent: 'center',
+    alignItems: 'center',
+    height:scaleSize(45)
+  },
+  yellBox:{
+    borderWidth: scaleSize(1),
+    borderColor: '#f28109',
+    borderRadius: scaleSize(4),
+    padding:scaleSize(5),
+    marginRight: scaleSize(5),
+    color:'#f28109',
+    fontSize:scaleSize(30),
+  },
+  whiteBox: {
+    borderWidth: scaleSize(1),
+    borderColor: '#fff',
+    borderRadius: scaleSize(4),
+    padding: scaleSize(5),
+  },
+  scorNum:{
+    position:'absolute',
+    right:scaleSize(20),
+    top:scaleSize(50),
+    flexDirection: 'row',
+  },
+  rankscoring:{
+    fontSize:scaleSize(72),
+    color:'#f28109',
+    lineHeight: scaleSize(72)
+  },
+  rankfen:{
+    fontSize: scaleSize(36),
+    color: '#f28109',
+    lineHeight:scaleSize(72)
+  },
+  rank:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: scaleSize(172),
+  },
+  rankBox:{
+    width: scaleSize(68),
+    height:scaleSize(68),
+    marginRight:scaleSize(42),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  rankFont:{
+    fontSize:scaleSize(42),
+    color:'#fff',
+  },
+  // norankFont: {
+  //   fontSize: scaleSize(42),
+  //   color: '#000',
+  // },
+  rankList:{
+    width: width,
+    paddingLeft:scaleSize(36),
   }
 })

@@ -13,7 +13,6 @@ import {
   ScrollView
 } from 'react-native';
 import { Table, TableWrapper, Row, Rows, Col  } from 'react-native-table-component';
-// import { Accordion, List } from 'antd-mobile';
 import Header from '../../component/header';
 import Mask from '../../component/Mask';
 import { matchStyle } from '../../layout/matchStyle';
@@ -28,12 +27,7 @@ export default class reviewProgress extends Component {
     this.state = {
       beforData: this.props.homeStore.basicData,
       date:'',
-      tableHead: ['评审方式', '联系方式', '已评', '未评', '进度'],
-      tableData: [
-        ['周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦周杰伦', '12333333333', '10', '10', '25%'],
-        ['周杰伦', '12333333333', '10', '10', '25%'],
-        ['周杰伦', '12333333333', '10', '10', '25%'],
-      ]
+      tableHead: ['评委姓名', '联系方式', '已评', '未评', '进度'],
     }
   };
 
@@ -48,8 +42,13 @@ export default class reviewProgress extends Component {
       projectgameid: getprojectgameid
     };
     const res = await apiBa(url, data, "POST", this.state.beforData.token, this.props);
-    console.log(res)
     if (res.result == "success") {
+      
+      if (res.data != ''){
+        for (let i in res.data){
+          res.data[i]['selecttype'] = false;
+        }
+      }
       this.setState({
         date: res.data,
       });
@@ -58,43 +57,66 @@ export default class reviewProgress extends Component {
     };
   }
 
-  onChange = (key) => {
-    console.log(key);
-  };
+  showTable(index){
+    let date_t = this.state.date.map((item,index_t)=>{
+      if (index_t == index){
+        this.state.date[index_t].selecttype = !this.state.date[index_t].selecttype
+      }
+      return(item)
+    })
+    this.setState({
+      date: date_t
+    })
+  }
 
   render() {
-    const state = this.state;
     let datelist = [];
     if (this.state.date != ''){
-      datelist = this.state.date.map((item,index)=>{
+      datelist = this.state.date.map((item,index)=>{   
+        let list_2 = item.grouplist.map((item,index)=>{
+          let table_list = item.teacherlist.map((item)=>{
+            return(
+              [item.username, item.phone, item.checkednum, item.notcheckednum, item.raterpingprocess]
+            )
+          })
+          return(
+            <View style={[matchStyle.RP_CL]} key={index}>
+              <Text style={matchStyle.classTitle}>{item.groupname}</Text>
+              <Table borderStyle={{ borderWidth: 0 }} style={matchStyle.table}>
+                <TableWrapper flexArr={[2, 2, 1, 1, 1]}>
+                  <Row flexArr={[2, 2, 1, 1, 1]} data={this.state.tableHead} style={matchStyle.table_title} textStyle={[matchStyle.fz_42_333, matchStyle.text_cen]} />
+                  <Rows data={table_list} flexArr={[2, 2, 1, 1, 1]} style={matchStyle.table_fontBox} textStyle={[matchStyle.text_cen, matchStyle.table_font]} numberOfLines={2} />
+                </TableWrapper>
+              </Table>
+            </View>
+          )
+        })
         return(
-          <View style={matchStyle.RP_list}>
+          <View style={matchStyle.RP_list} key={index}>
             <View style={[matchStyle.width_36]}>
-              <View style={matchStyle.RP_listBox}>
+              <TouchableOpacity style={[matchStyle.RP_listBox]} onPress={() => this.showTable(index)}>
                 <View style={matchStyle.RP_lb_ine}>
                   <Image
-                    source={require('../../image/icon_home_green3x.png')}
+                    source={require('../../image/icon_creative3x.png')}
                     style={[matchStyle.RP_icon, matchStyle.mr_27]}
                   />
                   <Text style={matchStyle.fz_42_333}>{item.projectclassname}</Text>
                 </View>
                 <View style={[matchStyle.RP_lb_ine, matchStyle.fl_R]}>
-                  <Text style={[matchStyle.fz_42_333, matchStyle.mr_27]}>50%</Text>
-                  <Image
-                    source={require('../../image/icon_home_green3x.png')}
-                    style={matchStyle.RP_icon_2}
-                  />
+                  <Text style={[matchStyle.fz_42_333, matchStyle.mr_27]}> {item.avgpingprocess} </Text>
+                  {/* <TouchableOpacity onPress={() => this.showTable(index)}> */}
+                    <Image
+                      source={require('../../image/icon_return3x.png')}
+                      style={[matchStyle.RP_icon_2,  item.selecttype == false ? matchStyle.transformR_180 : null ]}
+                    />
+                  {/* </TouchableOpacity> */}
                 </View>
-              </View>
-              <View style={matchStyle.RP_CL}>
-                <Text style={matchStyle.classTitle}>第一组</Text>
-                <Table borderStyle={{ borderWidth: 0 }} style={matchStyle.table}>
-                  <TableWrapper flexArr={[2, 2, 1, 1, 1]}>
-                    <Row flexArr={[2, 2, 1, 1, 1]} data={this.state.tableHead} style={matchStyle.table_title} textStyle={[matchStyle.fz_42_333, matchStyle.text_cen]} />
-                    <Rows data={this.state.tableData} flexArr={[2, 2, 1, 1, 1]} style={matchStyle.table_fontBox} textStyle={[matchStyle.text_cen, matchStyle.table_font]} numberOfLines={2} />
-                  </TableWrapper>
-                </Table>
-              </View>
+              </TouchableOpacity>
+              {item.selecttype == false ? null :
+                <View>
+                  {list_2}
+                </View>
+              }
             </View>
           </View>
         )
@@ -106,55 +128,12 @@ export default class reviewProgress extends Component {
           titleItem={() => '评审进度'}
           backFunc={() => this}
         />
-        
-        {/* <Accordion onChange={this.onChange}>
-          <Accordion.Panel header="Title 1">
-            <List>
-              <List.Item>content 1</List.Item>
-              <List.Item>content 2</List.Item>
-              <List.Item>content 3</List.Item>
-            </List>
-          </Accordion.Panel>
-          <Accordion.Panel header="Title 2">this is panel content2 or other</Accordion.Panel>
-          <Accordion.Panel header="Title 3">
-            text text text text text text text text text text text text text text text
-          </Accordion.Panel>
-        </Accordion> */}
         <View style={matchStyle.width_line}></View>
-        <View style={matchStyle.width_box}>
-          {/* <View style={matchStyle.RP_list}>
-              <View style={[matchStyle.width_36]}>
-                <View style={matchStyle.RP_listBox}>
-                  <View style={matchStyle.RP_lb_ine}>
-                    <Image
-                      source={require('../../image/icon_home_green3x.png')}
-                      style={[matchStyle.RP_icon, matchStyle.mr_27]}
-                    />
-                    <Text style={matchStyle.fz_42_333}>创意类</Text>
-                  </View>
-                  <View style={[matchStyle.RP_lb_ine, matchStyle.fl_R]}>
-                    <Text style={[matchStyle.fz_42_333, matchStyle.mr_27]}>50%</Text>
-                    <Image
-                      source={require('../../image/icon_home_green3x.png')}
-                      style={matchStyle.RP_icon_2}
-                    />
-                  </View>
-                </View>
-                <View style={matchStyle.RP_CL}> 
-                  <Text style={matchStyle.classTitle}>第一组</Text>
-                  <Table borderStyle={{ borderWidth: 0 }} style={matchStyle.table}>
-                      <TableWrapper flexArr={[2, 2, 1, 1, 1]}>
-                        <Row flexArr={[2, 2, 1, 1, 1]} data={this.state.tableHead} style={matchStyle.table_title} textStyle={[matchStyle.fz_42_333, matchStyle.text_cen]}/>
-                        <Rows data={this.state.tableData} flexArr={[2, 2, 1, 1, 1]} style={matchStyle.table_fontBox} textStyle={[matchStyle.text_cen, matchStyle.table_font]} numberOfLines={2}/>
-                    </TableWrapper>
-                  </Table>
-              </View>
-            </View>           
-          </View> */}
+        {/* <View style={matchStyle.width_box}> */}
           <ScrollView style={matchStyle.RP_sceoll}>
           {datelist}
           </ScrollView>
-        </View>
+        {/* </View> */}
 
       </View>
     )

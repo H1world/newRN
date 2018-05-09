@@ -24,6 +24,7 @@ const selectS = StyleSheet.create({
     borderTopWidth: scaleSize(1),
     borderBottomWidth: scaleSize(1),
     borderColor:'#dedede',
+    backgroundColor:'#fff',
   },
   selectList:{
     flex:1,
@@ -101,7 +102,6 @@ export default class ReceSelect extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: this.props.listData(),
       leftData: '',
       rightData:'',
       leftType: false,
@@ -161,18 +161,42 @@ export default class ReceSelect extends Component {
       visible_2: false
     })
   };
-  listFunction() {
-    if (this.props.listData === undefined) { return }
+
+  selectL_1() {
+    if (this.props.select_1 === undefined || this.props.select_1 === '') { return }
     else {
-      return this.props.listData();
+      return this.props.select_1();
     }
-  };
-  listTitleF() {
-    if (this.props.listTitle === undefined) {return}
-    else{
-      return this.props.listTitle();
+  }
+
+  selectL_2() {
+    if (this.props.select_2 === undefined || this.props.select_2 === '') { return }
+    else {
+      return this.props.select_2();
     }
-  };
+  }
+
+  selectTitleL() {
+    if (this.props.selectTitle === undefined || this.props.selectTitle === '') { return }
+    else {
+      return this.props.selectTitle();
+    }
+  }
+
+  leftList() {
+    if (this.props.leftList === undefined || this.props.leftList === '') { return }
+    else {
+      return this.props.leftList();
+    }
+  }
+
+  rightList() {
+    if (this.props.rightList === undefined || this.props.rightList === '') { return }
+    else {
+      return this.props.rightList();
+    }
+  }
+
   fatherThis() {
     if (this.props._this === undefined) { return }
     else {
@@ -198,32 +222,79 @@ export default class ReceSelect extends Component {
     let _this = this.fatherThis();
     _this.setState({
       yearData: item.year,
-      // pageNum:1,
     });
-    this.props.listFunction(item.year, _this.state.stateData, 1)
+    this.props.listFunction(item.year, _this.state.rightData, 1)
   };
   changeColor_2(item) {
     this.setState({
       changeColorDe_2: item,
-      rightTitle: item.statename,
+      rightTitle: item.name,
       titleColor_2:true,
       visible: false,
       visible_2: false
     });
     let _this = this.fatherThis();
     _this.setState({
-      stateData: item.state,
-      // pageNum: 1,
+      rightData: item.classid,
     })
-    this.props.listFunction(_this.state.yearData, item.state, 1)
+    this.props.listFunction(_this.state.yearData, item.classid, 1)
+  };
+
+  cjChange(item){
+    this.setState({
+      titleColor: true,
+      visible: false,
+      visible_2: false,
+    })
+    let _this = this.fatherThis();
+    _this.setState({
+      leftNum: item.classid,
+      leftName: item.name, 
+    });
+    this.props.listFunction(item.classid, _this.state.rightNum, 1)
+  };
+
+  cjChange_2(item) { 
+    this.setState({
+      titleColor_2: true,
+      visible: false,
+      visible_2: false
+    })
+    let _this = this.fatherThis();
+    _this.setState({
+      rightNum: item.groupid,
+      rightName: item.groupname, 
+    });
+    this.props.listFunction(_this.state.leftNum, item.groupid, 1)
   };
 
   render() {
     let leftData = [];
     let rightData = [];
-    if (this.listTitleF() == '赛事'){
-      if (this.listFunction() != ''){
-        leftData = this.listFunction().yearlist.map((item,index) => {
+    if (this.selectTitleL() == '成绩排名'){
+      if (this.leftList() != undefined && this.rightList() != undefined) {
+        this.state.changeColorDe_1 = this.selectL_1();
+        this.state.changeColorDe_2 = this.selectL_2();
+        leftData = this.leftList().map((item, index) => {
+          return (
+            <TouchableOpacity key={index} activeOpacity={1}
+              onPress={() => this.cjChange(item)}>
+              <Text style={this.state.changeColorDe_1 == item.name ? selectS.hideFont_select : selectS.hideFont} key={index}> {item.name} </Text>
+            </TouchableOpacity>
+          )
+        })
+        rightData = this.rightList().map((item, index) => {
+          return (
+            <TouchableOpacity key={index} activeOpacity={1}
+              onPress={() => this.cjChange_2(item)}>
+              <Text style={this.state.changeColorDe_2 == item.groupname ? selectS.hideFont_select : selectS.hideFont} key={index}> {item.groupname} </Text>
+            </TouchableOpacity>
+          )
+        })
+      }
+    }else{
+      if (this.leftList() != undefined && this.rightList() != undefined) {
+        leftData = this.leftList().map((item, index) => {
           return (
             <TouchableOpacity key={index} activeOpacity={1}
               onPress={() => this.changeColor(item)}>
@@ -231,11 +302,11 @@ export default class ReceSelect extends Component {
             </TouchableOpacity>
           )
         })
-        rightData = this.listFunction().statelist.map((item, index) => {
+        rightData = this.rightList().map((item, index) => {
           return (
             <TouchableOpacity key={index} activeOpacity={1}
               onPress={() => this.changeColor_2(item)}>
-              <Text style={this.state.changeColorDe_2 == item ? selectS.hideFont_select : selectS.hideFont} key={index}> {item.statename} </Text>
+              <Text style={this.state.changeColorDe_2 == item ? selectS.hideFont_select : selectS.hideFont} key={index}> {item.name} </Text>
             </TouchableOpacity>
           )
         })
@@ -245,7 +316,15 @@ export default class ReceSelect extends Component {
       <View style={selectS.selectBox}>
         <TouchableOpacity style={[selectS.selectList]} onPress={() => this.show()}>
           <View style={selectS.textBox}>
-            <Text style={this.state.titleColor == true ? selectS.fontStyle_2 : selectS.fontStyle}>{this.state.leftTitle}</Text>
+          {this.selectTitleL() == '成绩排名' ? 
+            <Text style={selectS.fontStyle_2}>
+              {this.selectL_1()}
+            </Text>
+            :
+            <Text style={this.state.titleColor == true ? selectS.fontStyle_2 : selectS.fontStyle}>
+              {this.state.leftTitle}
+            </Text>
+          }    
           <Image
             source={this.state.titleColor == true ? require('../image/icon_trianglegreen3x.png') : require('../image/icon_triangle3x.png')}
             style={selectS.toolIcon}
@@ -270,7 +349,14 @@ export default class ReceSelect extends Component {
         <View style={selectS.textBorder}></View>
         <TouchableOpacity style={selectS.selectList} onPress={() => this.show_2()}>
           <View style={selectS.textBox}>
-            <Text style={this.state.titleColor_2 == true ? selectS.fontStyle_2 : selectS.fontStyle}>{this.state.rightTitle}</Text>
+            {this.selectTitleL() == '成绩排名' ?
+              <Text style={selectS.fontStyle_2}>
+                {this.selectL_2()}
+              </Text> :
+              <Text style={this.state.titleColor_2 == true ? selectS.fontStyle_2 : selectS.fontStyle}>
+                {this.state.rightTitle}
+              </Text>
+            }
           <Image
               source={this.state.titleColor_2 == true ? require('../image/icon_trianglegreen3x.png') : require('../image/icon_triangle3x.png')}
             style={selectS.toolIcon}
