@@ -24,6 +24,12 @@ import SignUpProject from '../page/match/signUpProject';
 import selectPage from '../page/match/selectProject';
 import gradeRankings from '../page/match/grade/allranking';
 import groupingRankings from '../page/match/grade/groupingranking';
+import projectAdmin from '../page/indexPorject/indexproject';      //index项目
+import projectSummary from '../page/indexPorject/summary';      //index项目汇总
+import ProjectMap from '../page/indexPorject/projectmap';      //index项目汇总
+
+import modifyPassword from '../page/my/modifypassword';      //修改密码
+
 
 import { loginStyle } from '../layout/loginStyle.js';
 import { setSpText, scaleSize } from '../algorithm/company';
@@ -75,7 +81,7 @@ const MainScreenNavigator = TabNavigator({
       tabBarLabel: '我的',
       tabBarIcon: ({ focused,tintColor }) => (
         <Image
-          source={require('../image/icon_home_grey.png')}
+          source={require('../image/icon_mygrey.png')}
           style={[{ tintColor: tintColor }, loginStyle.footImage]}
         />
       ),
@@ -194,12 +200,20 @@ export const RootStack = StackNavigator({
   },
   grade:{
     screen: GradePage,
-    // mode: 'card',
-    // navigationOptions: {
-    //   gesturesEnabled: false,
-    //   headerTintColor: 'black',
-    // },
-  }
+  },
+  projectadmin:{
+    screen: projectAdmin,
+  },
+  projectsummary: {
+    screen: projectSummary,
+  },
+  projectmap: {
+    screen: ProjectMap,
+  },
+  modify: {
+    screen: modifyPassword,
+  },
+  
 },
 {
   navigationOptions: {

@@ -146,11 +146,6 @@ export default class gradeRankings extends Component {
           rightList={() => rightL}
           listFunction={(classid, groupid, page) => this.getProjectSort(classid, groupid, page)}
         />
-        {/* <Button title='滚动到指定位置' onPress={() => {
-          //this._flatList.scrollToEnd();
-          // this._flatList.scrollToIndex({viewPosition:0,index:8});
-          this._flatList.scrollToOffset({ animated: true, offset: 0 });
-        }} /> */}
         <View style={[matchStyle.matchSubject, matchStyle.mb_304, { borderBottomWidth: 0 }]}>
           <FlatList
             ref={(flatList) => this._flatList = flatList}

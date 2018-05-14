@@ -162,7 +162,7 @@ export default class Header extends Component{
               : <Text style={headerStyle.titleFont} numberOfLines={1}>{this.renderItem()}</Text> }
           </View>
           <TouchableOpacity onPress={() => this.sureGo()}>
-            {this.headerRight() == true ? <Text style={headerStyle.headerRight}>确定</Text> : null}
+            {this.headerRight() == true ? <Text style={headerStyle.headerRight}>{this.props.headRightText()}</Text> : null}
           </TouchableOpacity>
         </View>
       </View>

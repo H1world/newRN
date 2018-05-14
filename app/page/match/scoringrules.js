@@ -128,6 +128,7 @@ export default class ScoringRules extends Component {
           titleItem={() => '评审规则'}
           backFunc={() => this}
           headRight={() => true}
+          headRightText={() => '确定'}          
           sureGo={() => this.updateConfig()}
         />
         {datelist}

@@ -7,6 +7,18 @@ export const matchStyle = StyleSheet.create({
     fontSize: scaleSize(36), 
     color: '#666',
   },
+  fz_30_fff: {
+    fontSize: scaleSize(30),
+    color: '#fff',
+  },
+  fz_30_333: {
+    fontSize: scaleSize(30),
+    color: '#333',
+  },
+  fz_30_f28109: {
+    fontSize: scaleSize(30),
+    color: '#f28109',
+  },
   fz_42_333: {
     fontSize: scaleSize(42),
     color: '#333',
@@ -29,6 +41,9 @@ export const matchStyle = StyleSheet.create({
   },
   mb_10: {
     marginBottom: scaleSize(10),
+  },
+  mb_48: {
+    marginBottom: scaleSize(48),
   },
   mb_170: {
     marginBottom: scaleSize(170),
@@ -61,6 +76,10 @@ export const matchStyle = StyleSheet.create({
   },
   text_cen:{
     textAlign: 'center',
+  },
+  Middle:{
+    alignItems: 'center',
+    justifyContent: 'center', 
   },
   matchSubject:{
     width:width,
@@ -408,5 +427,55 @@ export const matchStyle = StyleSheet.create({
   rankList:{
     width: width,
     paddingLeft:scaleSize(36),
+  },
+  summaryechart:{
+    width: width,
+    // height:scaleSize(500),
+    // backgroundColor:'#b00',
+    paddingLeft:scaleSize(100),
+    borderBottomWidth: scaleSize(1),
+    borderColor: '#dedede',
+    paddingTop: scaleSize(100),
+    paddingBottom: scaleSize(30),
+    // flex:1
+  },
+  summaryOp:{
+    position:'absolute',
+    right: scaleSize(134),
+    top:scaleSize(100),
+    zIndex:-1
+  },
+  summaryF:{
+    fontSize:scaleSize(60),
+    color:'#333',
+    textAlign:'center'
+  },
+  summarysF: {
+    fontSize: scaleSize(30),
+    color: '#666',
+    textAlign: 'center'    
+  },
+  summaryTl:{
+    width:width,
+    marginTop:scaleSize(63)
+  },
+  summarytable:{
+    marginLeft: scaleSize(36),
+    marginRight:scaleSize(36),
+  },
+  summary_sceoll:{
+    // paddingBottom:scaleSize(500)
+  },
+  mapTable:{
+    backgroundColor: '#fff',
+  },
+  map_table_title:{
+    height: scaleSize(88),
+    backgroundColor: '#fff',
+    borderBottomWidth:scaleSize(1),
+    borderColor:'#dedede'
+  },
+  map_table_fontBox:{
+    height: scaleSize(110),
   }
 })

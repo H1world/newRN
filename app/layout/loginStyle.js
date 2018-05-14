@@ -76,4 +76,85 @@ export const loginStyle = StyleSheet.create({
     fontSize: scaleSize(54),
     color: '#01a374',
   },
+  myNamelogo:{
+    width:width,
+    height:scaleSize(244),
+    paddingLeft: scaleSize(36),
+    paddingRight:scaleSize(36),
+    backgroundColor:'#fff',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center',
+  },
+  myName:{
+    flex: 1,    
+    fontSize:scaleSize(72),
+    color:'#333',
+    fontWeight: 'bold',
+  },
+  myLogo: {
+    width: scaleSize(150),
+    height:scaleSize(150),
+    borderRadius:scaleSize(75)
+  },
+  MyList:{
+    width: width,
+    height: scaleSize(132),
+    paddingLeft: scaleSize(36),
+    paddingRight: scaleSize(36),
+    backgroundColor: '#fff',
+    marginTop:scaleSize(30),
+    flexDirection: 'row',
+    alignItems: 'center',   
+    justifyContent: 'center',
+  },
+  MyListLeft:{
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  MyListRight:{
+    flex:1,
+    flexDirection: 'row',    
+    justifyContent: 'flex-end',
+  },
+  MyListPng:{
+    width: scaleSize(56),
+    height: scaleSize(56),
+    marginRight:scaleSize(24),
+  },
+  MyListFont:{
+    fontSize: scaleSize(42),
+    color: '#333',
+  },
+  MyListRightIco:{
+    width: scaleSize(40),
+    height: scaleSize(40),
+  },
+  signOut:{
+    fontSize:scaleSize(42),
+    color:'#259461',
+  },
+  modifyFont:{
+    fontSize: scaleSize(42),
+    color: '#333',
+  },
+  modifyLeft:{
+    width: scaleSize(320),
+  },
+  modifyRight:{
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  modifyInput:{
+    flex: 1,
+    color: '#333',
+    fontSize: scaleSize(42),
+    backgroundColor: '#fff',
+    height: scaleSize(120),
+  },
+  password_img: {
+    width: scaleSize(42),
+    height: scaleSize(42),
+  },
 });

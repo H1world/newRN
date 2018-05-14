@@ -123,13 +123,13 @@ export default class MyScreen extends Component {
             />
             <Text style={homeStyle.toolFont}> 需求 </Text>
           </TouchableOpacity>
-          <View style={homeStyle.toolBox}>
+          <TouchableOpacity style={homeStyle.toolBox} onPress={() => this._goRouter_vo('projectadmin')}>
             <Image
               source={require('../image/icon_xiangmu.png')}
               style={homeStyle.toolIcon}
             />
             <Text style={homeStyle.toolFont}> 项目 </Text>
-          </View>
+          </TouchableOpacity>
           <TouchableOpacity style={homeStyle.toolBoxNull} onPress={() => this._goRouter_vo('match')}>
             <Image
               source={require('../image/icon_saishi.png')}
