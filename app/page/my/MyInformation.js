@@ -16,6 +16,8 @@ import {
 import { loginStyle } from '../../layout/loginStyle';
 import { setSpText, scaleSize } from '../../algorithm/company';
 import { inject, observer } from "mobx-react";
+import { NavigationActions } from 'react-navigation';
+import * as CacheManager from 'react-native-http-cache';
 @inject('homeStore')
 @observer
 export default class Information extends Component {
@@ -23,8 +25,26 @@ export default class Information extends Component {
     super(props);
     this.state = {
       beforData: this.props.homeStore.basicData,
+      cacheSize:'',
     }
   };
+
+  componentWillMount() {
+    this.getCacheSize();
+  }
+  
+  async getCacheSize() {
+    const data = await CacheManager.getCacheSize();
+    const size = data / (1024 * 1024);
+    this.setState({ cacheSize: size.toFixed(2) + 'M' });
+  }
+
+  async clearCache(){
+    await CacheManager.clearCache();
+    // this.getCacheSize();
+    this.setState({ cacheSize: '0M' });
+    alert('清除缓存成功');
+  }
 
   render() {
     return (
@@ -62,23 +82,28 @@ export default class Information extends Component {
             </View>
           </TouchableWithoutFeedback>
 
-          <View style={loginStyle.MyList}>
-            <View style={loginStyle.MyListLeft}>
-              <Image
-                source={require('../../image/icon_qingchu.png')}
-                style={loginStyle.MyListPng}
-              />
-              <Text style={loginStyle.MyListFont}>
-                清除缓存
-              </Text>
+          <TouchableWithoutFeedback onPress={() => { this.clearCache() }}>
+            <View style={loginStyle.MyList}>
+              <View style={loginStyle.MyListLeft}>
+                <Image
+                  source={require('../../image/icon_qingchu.png')}
+                  style={loginStyle.MyListPng}
+                />
+                <Text style={loginStyle.MyListFont}>
+                  清除缓存
+                </Text>
+              </View>
+              <View style={loginStyle.MyListRight}>
+                <Text style={loginStyle.MyListFont}>
+                  {this.state.cacheSize}
+                </Text>
+                <Image
+                  source={require('../../image/icon_enter.png')}
+                  style={loginStyle.MyListRightIco}
+                />
+              </View>
             </View>
-            <View style={loginStyle.MyListRight}>
-              <Image
-                source={require('../../image/icon_enter.png')}
-                style={loginStyle.MyListRightIco}
-              />
-            </View>
-          </View>
+          </TouchableWithoutFeedback>
           
           <TouchableWithoutFeedback onPress={() => { this.SignOut() }}>
             <View style={loginStyle.MyList}>
@@ -92,7 +117,14 @@ export default class Information extends Component {
     )
   }
   SignOut() {
+    const resetLogin = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Login' })//要跳转到的页面名字
+      ]
+    });
     global.MySorage._remove('userList');
-    this.props.navigation.navigate('Login');
+    // this.props.navigation.navigate('Login');
+    this.props.navigation.dispatch(resetLogin);
   }
 }

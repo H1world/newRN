@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Platform,
   Text,
   Image,
   StyleSheet,
@@ -16,6 +17,7 @@ import Information from '../page/my/MyInformation';
 import Overview from '../page/indexpage/overView';
 import Demandindex from '../page/indexpage/demandI';
 import matchPage from '../page/match/matchIndex';
+import AddProjectPage from '../page/match/addProjectPage';      //添加赛事
 import matchEdit from '../page/match/matchedit';
 import matchAdmin from '../page/match/matchadmin';
 import reviewProgress from '../page/match/ReviewProgress';
@@ -26,7 +28,11 @@ import gradeRankings from '../page/match/grade/allranking';
 import groupingRankings from '../page/match/grade/groupingranking';
 import projectAdmin from '../page/indexPorject/indexproject';      //index项目
 import projectSummary from '../page/indexPorject/summary';      //index项目汇总
-import ProjectMap from '../page/indexPorject/projectmap';      //index项目汇总
+import ProjectMap from '../page/indexPorject/projectmap';      //index项目地图
+import matchType from '../page/match/matchtype';      //赛事类别
+import matchStage from '../page/match/matchstage';      //赛事阶段
+import SetUpIndex from '../page/match/judgesSetUp/setUpIndex';      //评审设置
+
 
 import modifyPassword from '../page/my/modifypassword';      //修改密码
 
@@ -48,32 +54,32 @@ const MainScreenNavigator = TabNavigator({
       ),
     }
   },
-  ProjectPage: {
-    screen: MyProject,
-    navigationOptions: {
-      header: null,
-      tabBarLabel: '项目',
-      tabBarIcon: ({ focused,tintColor }) => (
-        <Image
-          source={focused ? require('../image/icon_xiangmu_green3x.png') : require('../image/icon_xiangmu_grey.png')}
-          style={[loginStyle.footImage]}
-        />
-      ),
-    }
-  },
-  Sapien: {
-    screen: Sapien,
-    navigationOptions: {
-      header: null,
-      tabBarLabel: '投智人',
-      tabBarIcon: ({ focused,tintColor }) => (
-        <Image
-          source={focused ? require('../image/icon_touzhiren_green3x.png') : require('../image/icon_touzhiren_grey.png')}        
-          style={[loginStyle.footImage]}
-        />
-      ),
-    }
-  },
+  // ProjectPage: {
+  //   screen: MyProject,
+  //   navigationOptions: {
+  //     header: null,
+  //     tabBarLabel: '项目',
+  //     tabBarIcon: ({ focused,tintColor }) => (
+  //       <Image
+  //         source={focused ? require('../image/icon_xiangmu_green3x.png') : require('../image/icon_xiangmu_grey.png')}
+  //         style={[loginStyle.footImage]}
+  //       />
+  //     ),
+  //   }
+  // },
+  // Sapien: {
+  //   screen: Sapien,
+  //   navigationOptions: {
+  //     header: null,
+  //     tabBarLabel: '投智人',
+  //     tabBarIcon: ({ focused,tintColor }) => (
+  //       <Image
+  //         source={focused ? require('../image/icon_touzhiren_green3x.png') : require('../image/icon_touzhiren_grey.png')}        
+  //         style={[loginStyle.footImage]}
+  //       />
+  //     ),
+  //   }
+  // },
   My: {
     screen: Information,
     navigationOptions: {
@@ -97,15 +103,31 @@ const MainScreenNavigator = TabNavigator({
     activeTintColor: '#259461', // 文字和图片选中颜色
     inactiveTintColor: '#999', // 文字和图片默认颜色
     showIcon: true, // android 默认不显示 icon, 需要设置为 true 才会显示
-    indicatorStyle: { height: 0 }, // android 中TabBar下面会显示一条线，高度设为 0 后就不显示线了
-    labelStyle: {
-      fontSize: scaleSize(30), // 文字大小
-      marginBottom: 5  
+    // indicatorStyle: { height: 0 }, // android 中TabBar下面会显示一条线，高度设为 0 后就不显示线了
+    // labelStyle: {
+    //   fontSize: scaleSize(30), // 文字大小
+    //   position: 'absolute',
+    //   top: scaleSize(60),
+    // },
+    // style: {  
+    //   height: scaleSize(147),
+    //   backgroundColor: '#b00',
+    // },  
+    style: { //TabNavigator 的背景颜色
+      backgroundColor: 'white',
+      height: 55,
     },
-    style: {
-      height: scaleSize(147),
-      backgroundColor: '#ffffff',
-    },  
+    indicatorStyle: {//标签指示器的样式对象（选项卡底部的行）。安卓底部会多出一条线，可以将height设置为0来暂时解决这个问题
+      height: 0,
+    },
+    labelStyle: {//文字的样式
+      fontSize: scaleSize(30),
+      marginTop: -5,
+      marginBottom: 5,
+    },
+    iconStyle: {//图标的样式
+      marginBottom: 5,
+    }
   },
   });
 //成绩排名bar
@@ -140,12 +162,22 @@ const GradePage = TabNavigator({
         marginBottom: scaleSize(47)
       },
       style: {
-        height: scaleSize(150),
+        height: 55,
         backgroundColor: '#ffffff',  
       },
     },
   }
 )
+
+const TransitionConfiguration = () => ({
+  screenInterpolator: (sceneProps) => {
+    const { scene } = sceneProps;
+    const { route } = scene;
+    const params = route.params || {};
+    const transition = params.transition || 'forHorizontal';
+    return CardStackStyleInterpolator[transition](sceneProps);
+  },
+});
 
 //路由.
 export const RootStack = StackNavigator({
@@ -168,7 +200,7 @@ export const RootStack = StackNavigator({
     screen: Login,
     mode: 'card',
     navigationOptions: {
-      gesturesEnabled: false,
+      gesturesEnabled: false,  
     },
   },
   overview:{
@@ -179,6 +211,9 @@ export const RootStack = StackNavigator({
   },
   match: {
     screen: matchPage,
+  },
+  addpage:{
+    screen:AddProjectPage
   },
   matchedit: {
     screen: matchEdit,
@@ -213,9 +248,18 @@ export const RootStack = StackNavigator({
   modify: {
     screen: modifyPassword,
   },
-  
+  matchtype: {
+    screen: matchType,
+  },
+  matchstage: {
+    screen: matchStage,
+  },
+  setupindex: {
+    screen: SetUpIndex,
+  },  
 },
 {
+  transitionConfig: TransitionConfiguration,
   navigationOptions: {
       header: null,
       gesturesEnabled: true,

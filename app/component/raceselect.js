@@ -68,6 +68,8 @@ const selectS = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
+    backgroundColor:'#fff',
+    top:0,
     zIndex: 10,
   },
   hideFont:{
@@ -271,7 +273,7 @@ export default class ReceSelect extends Component {
   render() {
     let leftData = [];
     let rightData = [];
-    if (this.selectTitleL() == '成绩排名'){
+    if (this.selectTitleL() == 'linkage'){
       if (this.leftList() != undefined && this.rightList() != undefined) {
         this.state.changeColorDe_1 = this.selectL_1();
         this.state.changeColorDe_2 = this.selectL_2();
@@ -316,7 +318,7 @@ export default class ReceSelect extends Component {
       <View style={selectS.selectBox}>
         <TouchableOpacity style={[selectS.selectList]} onPress={() => this.show()}>
           <View style={selectS.textBox}>
-          {this.selectTitleL() == '成绩排名' ? 
+            {this.selectTitleL() == 'linkage' ? 
             <Text style={selectS.fontStyle_2}>
               {this.selectL_1()}
             </Text>
@@ -349,7 +351,7 @@ export default class ReceSelect extends Component {
         <View style={selectS.textBorder}></View>
         <TouchableOpacity style={selectS.selectList} onPress={() => this.show_2()}>
           <View style={selectS.textBox}>
-            {this.selectTitleL() == '成绩排名' ?
+            {this.selectTitleL() == 'linkage' ?
               <Text style={selectS.fontStyle_2}>
                 {this.selectL_2()}
               </Text> :

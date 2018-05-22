@@ -155,6 +155,7 @@ export default class matchEdit extends Component {
           titleItem={() => '修改赛事信息'}
           backFunc={() => this}
           headRight={() => true}
+          headRightText={() => '确定'}
           sureGo={() => this.updateProjectGame()}
         />
         <View style={{ backgroundColor: '#f2f2f2'}}> 

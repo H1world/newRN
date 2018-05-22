@@ -107,7 +107,7 @@ export default class ScoringRules extends Component {
           <View style={matchStyle.scoring} key={index}>
             <View style={matchStyle.scoring_list}>
               <Text style={matchStyle.scoring_list_text}>
-                {item.configkey}
+                {item.option}
             </Text>
               <Switch
                 value={item.configvalue}

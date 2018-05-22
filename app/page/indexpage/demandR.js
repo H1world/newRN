@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView, FlatList, Alert, TouchableOpacity } from 'react-native';
+import { Platform, View, Text, Image, ScrollView, FlatList, Alert, TouchableOpacity } from 'react-native';
 import TableHeader from '../../component/taberheader';
 import Mask from '../../component/Mask';
 import AlertBox from '../../component/alert';
@@ -20,22 +20,28 @@ export default class DemandRJ extends Component {
       pageNum: 1,
       totalPage: '',
       alertData:'',
-      alertType:false
+      alertType:false,
+      loading:'',
     }
   };
   componentDidMount() {
     this.getSchoolData(1);
   };
   async getSchoolData(page) {
+    this.setState({
+      loading: false,
+    })
     let url = this.props.homeStore.api + 'mobile/system/getThisOrgRecommendRequirementListByCondition';
     let data = {
       orgid: this.state.orgid,
       page: page
     }
     const res = await apiBa(url, data, "POST", this.state.token, this.props.thisProps());
+    // console.log(res.data)    
     if (res.result == "success") {
       this.setState({
-        totalPage: res.data.totalpage
+        totalPage: res.data.totalpage,
+        loading: true,
       });
       if ((this.state.pageNum >= this.state.totalPage)) {
         this.setState({
@@ -52,7 +58,14 @@ export default class DemandRJ extends Component {
           pageNum: 1,
         });
       } else {
-        this.state.data.push(...res.data.requirementlist);
+        if (Platform.OS === 'ios') {
+          this.state.data.push(...res.data.requirementlist);
+        } else {
+          list = [];
+          list = list.concat(this.state.data);
+          list.push(...res.data.requirementlist)
+          this.state.data = list;
+        }
         this.setState({
           pageNum: page,
         });
@@ -77,6 +90,7 @@ export default class DemandRJ extends Component {
   render() {
     return (
       <View style={{ backgroundColor: '#fff', flex: 1 }}>
+        {this.state.loading == false ? <Mask /> : null}   
         {this.state.alertType == true ? 
         <AlertBox
           alertText={() => this.alertText()}

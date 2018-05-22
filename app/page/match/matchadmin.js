@@ -27,9 +27,6 @@ export default class matchAdmin extends Component {
     }
   };
 
-  componentDidMount() {
-  }
-
   render() {
     const { params } = this.props.navigation.state;
     return (
@@ -71,6 +68,24 @@ export default class matchAdmin extends Component {
               <Text style={matchStyle.adminfont}>成绩排名</Text>
               <Image
                 source={require('../../image/icon_paiming3x.png')}
+                style={matchStyle.adminIcon}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={matchStyle.adminRow}>
+            <TouchableOpacity style={[matchStyle.adminBox, { backgroundColor: '#ccd0ff' }]} onPress={() => this.props.navigation.navigate('setupindex', { match_id: params.match_id})}>
+              <Text style={matchStyle.adminfont}>评委设置</Text>
+              <Image
+                source={require('../../image/icon_Judgesset.png')}
+                style={matchStyle.adminIcon}
+              />
+            </TouchableOpacity>
+            <View style={matchStyle.adminContent}>
+            </View>
+            <TouchableOpacity style={[matchStyle.adminBox, { backgroundColor: '#ccf8f1' }]} onPress={() => this.props.navigation.navigate('signupproject')}>
+              <Text style={matchStyle.adminfont}>项目分配</Text>
+              <Image
+                source={require('../../image/icon_projectassignments.png')}
                 style={matchStyle.adminIcon}
               />
             </TouchableOpacity>

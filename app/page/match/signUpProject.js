@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Platform,
   Text,
   View,
   FlatList,
@@ -88,7 +89,14 @@ export default class SignUpProject extends Component {
           pageNum: 1,
         });
       } else {
-        this.state.data.push(...res.data.projectlist);
+        if (Platform.OS === 'ios') {
+          this.state.data.push(...res.data.projectlist);
+        } else {
+          list = [];
+          list = list.concat(this.state.data);
+          list.push(...res.data.projectlist)
+          this.state.data = list;  
+        }
         this.setState({
           loading: true,
           pageNum: page,

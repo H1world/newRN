@@ -12,7 +12,7 @@ import {
   TouchableWithoutFeedback,
   AppRegistry
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, NavigationActions } from 'react-navigation';
 import { loginStyle } from '../layout/loginStyle.js';
 import { RootStack } from '../../app/navigationPage/router';
 import { Button, List, Badge, InputItem } from 'antd-mobile';
@@ -193,7 +193,14 @@ class Login extends React.Component {
     user.username = userData.username;                //用户名称
     user.allpors = this.props;
     global.MySorage._sava('userList', user);
-    this.props.navigation.navigate('Home')
+    const resetIndex = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Home' })//要跳转到的页面名字
+      ]
+    });
+    // this.props.navigation.navigate('Home')
+    this.props.navigation.dispatch(resetIndex);      
   };
 }
 export default Login;

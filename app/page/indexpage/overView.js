@@ -10,13 +10,18 @@ import {
   TextInput,
   StatusBar,
   ImageBackground,
-  ScrollView
+  ScrollView,
+  Dimensions
 } from 'react-native';
-import Echarts from 'native-echarts'
+// import Echarts from 'native-echarts'
+import Echarts from '../../../Resources/native-echarts'
 import Header from '../../component/header';
 import Mask from '../../component/Mask';
 import { homeStyle } from '../../layout/homeStyle';
 import { apiBa } from '../../../api/api';
+import { setSpText, scaleSize } from '../../algorithm/company';
+const { width, height } = Dimensions.get('window');
+
 import { inject, observer } from "mobx-react";
 @inject('homeStore')
 @observer
@@ -293,7 +298,7 @@ export default class Overview extends Component {
           <View style={[homeStyle.leftRight36D, homeStyle.marginB30, homeStyle.echartBox]}>
             <Text style={homeStyle.echartTitle}>项目趋势图</Text>
             <View style={homeStyle.echartList}>
-              <Echarts option={option_1} height={250} />
+              <Echarts option={option_1} height={250} />  
             </View>  
           </View>
 

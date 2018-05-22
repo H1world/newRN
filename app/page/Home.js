@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Platform,
   AppRegistry,
   Text,
   Image,
@@ -64,8 +65,8 @@ export default class MyScreen extends Component {
     const { params } = this.props.navigation.state;
     let bannerList = [
       { name: '总览', uri: bannericon1, router:'overview'},
-      { name: '项目汇总', uri: bannericon2, router: 'alert'},
-      { name: '成绩排名', uri: bannericon3, router: 'overview'},
+      { name: '项目汇总', uri: bannericon2, router: 'projectsummary'},
+      { name: '成绩排名', uri: bannericon3, router: ''},
     ];
     let iconList = bannerList.map((item,index) => {
       return (
@@ -95,7 +96,8 @@ export default class MyScreen extends Component {
     }
     return (
       <View style={{backgroundColor:'#fff'}}>
-        <View style={homeStyle.homeTop}>
+        
+        <View style={Platform.OS === 'ios' ? [homeStyle.homeTop, homeStyle.marginTop_60] : homeStyle.homeTop}>
           <StatusBar
             backgroundColor="#259461"
           />

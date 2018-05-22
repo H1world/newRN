@@ -4,6 +4,7 @@ import {
 import AppState from '../mobx/AppState';
 import { Toast } from 'antd-mobile';
 import {  observer } from 'mobx-react';
+import { NavigationActions } from 'react-navigation';
 
 async function apiBa(url, options, method, xytoken, propsed) {
   // const searchStr = JSON.stringify(options);   
@@ -37,7 +38,15 @@ async function apiBa(url, options, method, xytoken, propsed) {
   if (data.code == '1000'){             //如果后台返回了'1000' 清空内存数据 跳转到注册页
     Toast.fail('登录失效，请重新登录', 30);
     global.MySorage._remove('userList');
-    propsed.navigation.navigate('Login');
+    // propsed.navigation.navigate('Login');
+    const resetLogin = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Login' })//要跳转到的页面名字
+      ]
+    });
+    global.MySorage._remove('userList');
+    propsed.navigation.dispatch(resetLogin);
     setTimeout(() => {
       Toast.hide();
     }, 3000);  

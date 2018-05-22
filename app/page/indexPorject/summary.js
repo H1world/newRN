@@ -7,7 +7,8 @@ import {
   Dimensions,
   ScrollView
 } from 'react-native';
-import Echarts from 'native-echarts'
+// import Echarts from 'native-echarts'
+import Echarts from '../../../Resources/native-echarts'
 import Mask from '../../component/Mask';
 import Header from '../../component/header';
 import { matchStyle } from '../../layout/matchStyle';
@@ -101,7 +102,7 @@ export default class projectSummary extends Component {
             normal: {
               position: 'inner',
               formatter: function (params) {
-                return params.name + '\nn' + params.value + '个' + '\nn' + params.data.value_2;
+                return params.name + '\nn' + params.value + '\nn' + params.data.value_2;
               },
             }
           },

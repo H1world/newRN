@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Platform,
   Text,
   Image,
   View,
@@ -114,7 +115,15 @@ export default class gradeRankings extends Component {
           pageNum: 1,
         });
       } else {
-        this.state.data.push(...res.data.projectlist);
+        // this.state.data.push(...res.data.projectlist);
+        if (Platform.OS === 'ios') {
+          this.state.data.push(...res.data.projectlist);
+        } else {
+          list = [];
+          list = list.concat(this.state.data);
+          list.push(...res.data.projectlist)
+          this.state.data = list;
+        }
         this.setState({
           loading: true,
           pageNum: page,
@@ -140,7 +149,7 @@ export default class gradeRankings extends Component {
         <ReceSelect
           select_1={() => this.state.leftName}
           select_2={() => this.state.rightName}
-          selectTitle={() => '成绩排名'}
+          selectTitle={() => 'linkage'}
           _this={() => this}
           leftList={() => leftL}
           rightList={() => rightL}
@@ -166,7 +175,7 @@ export default class gradeRankings extends Component {
   }
 
   renderMovie = ({ item, index }) => (
-    <View style={[matchStyle.matchinside, matchStyle.mt_42, matchStyle.pb_0]}>
+    <View style={[matchStyle.matchinside, matchStyle.mt_42, matchStyle.ml_36,matchStyle.pb_0]}>
       <View style={matchStyle.matchinsidein}>
         <View style={matchStyle.rank}>
           {index == '0' ?

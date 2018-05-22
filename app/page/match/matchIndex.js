@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Platform,
   AppRegistry,
   Text,
   Image,
@@ -30,7 +31,7 @@ export default class matchPage extends Component {
       yearData: 0,
       rightData: 0,
       refreshing: false,
-      loading:false,
+      loading:'',
       showFoot: 0,
       pageNum: 1,
       totalPage: '',
@@ -55,6 +56,9 @@ export default class matchPage extends Component {
   };
 
   async getList(year,state,page) {
+    this.setState({
+      loading: false
+    });
     let url = this.props.homeStore.api + 'mobile/system/getOrgProjectGameList';
     let data = {
       year: year,
@@ -62,6 +66,7 @@ export default class matchPage extends Component {
       page: page
     }
     const res = await apiBa(url, data, "POST", this.state.beforData.token, this.props);  
+    // console.log(res);
     if (res.result == "success") {
       this.setState({
         totalPage: res.data.totalpage
@@ -84,7 +89,14 @@ export default class matchPage extends Component {
           pageNum: 1,
         });
       } else {
-        this.props.homeStore.matchIndexDate.push(...res.data.projectgamelist);
+        if (Platform.OS === 'ios') {
+          this.props.homeStore.matchIndexDate.push(...res.data.projectgamelist);
+        } else {
+          list = [];
+          list = list.concat(this.state.data);
+          list.push(...res.data.projectgamelist)
+          this.props.homeStore.matchIndexDate = list; 
+        }
         this.setState({
           loading: true,
           pageNum: page,
@@ -95,6 +107,20 @@ export default class matchPage extends Component {
     };
   };
 
+  goAddProjectPage(){
+    this.props.homeStore.setMatchType('请选择');    //整个新建赛事页面   由于赛事类别是跳转的原因要把数据交给mobx管理 不然回来数据将会被清空
+    this.props.homeStore.setGameid('');
+    this.props.homeStore.setStageid('');
+    this.props.homeStore.setMatchName('');
+    this.props.homeStore.setMatchAddT1('');
+    this.props.homeStore.setMatchAddT2('');
+    this.props.homeStore.setMatchAddT3('');
+    this.props.homeStore.setMatchAddT4('');
+    this.props.homeStore.setMatchSigntype({});
+    this.props.homeStore.setMatchSharestatus(false);
+    this.props.navigation.navigate('addpage')
+  };
+
   render() {
     this.state.data = this.props.homeStore.matchIndexDate.slice();
     return (
@@ -103,6 +129,9 @@ export default class matchPage extends Component {
         <Header
           titleItem={() => '赛事'}
           backFunc={() => this}
+          headRight={() => true}
+          headRightText={() => '创建赛事'}
+          sureGo={() => this.goAddProjectPage()}
         />
         <ReceSelect
           select_1={() => '年份'}
@@ -128,7 +157,7 @@ export default class matchPage extends Component {
   };
 
   goAdmin(item){
-    this.props.navigation.navigate('matchadmin', { match_name: item.projectgamename });
+    this.props.navigation.navigate('matchadmin', { match_name: item.projectgamename, match_id: item.projectgameid });
     let projectgameid = item.projectgameid; 
     this.props.homeStore.setProjectgameid(projectgameid);
   };
@@ -195,7 +224,6 @@ export default class matchPage extends Component {
   );
 
   onRefresh = () => {
-    // console.log(this.state.yearData, this.state.stateData)
     this.setState({
       refreshing: true,
       pageNum: 1,

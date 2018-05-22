@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Platform,
   Text,
   Image,
   View,
@@ -65,7 +66,14 @@ export default class gradeRankings extends Component {
           pageNum: 1,
         });
       } else {
-        this.state.data.push(...res.data.projectlist);
+        if (Platform.OS === 'ios'){
+          this.state.data.push(...res.data.projectlist);
+        }else{
+          list = [];
+          list = list.concat(this.state.data);
+          list.push(...res.data.projectlist)
+          this.state.data = list;
+        }
         this.setState({
           loading: true,
           pageNum: page,
@@ -87,7 +95,7 @@ export default class gradeRankings extends Component {
             data={this.state.data}
             renderItem={this.renderMovie}
             onRefresh={this.onRefresh}
-            style={matchStyle.rankList}
+            style={[matchStyle.rankList]}
             onEndReachedThreshold={0.1}
             onEndReached={this._onEndReached}
             ListFooterComponent={this._renderFooter}
@@ -101,7 +109,7 @@ export default class gradeRankings extends Component {
   }
 
   renderMovie = ({ item, index }) => (
-    <View style={[matchStyle.matchinside, matchStyle.mt_42, matchStyle.pb_0]}>
+    <View style={[matchStyle.matchinside, matchStyle.mt_42, matchStyle.ml_36,matchStyle.pb_0]}>
       <View style={matchStyle.matchinsidein}>
         <View style={matchStyle.rank}>
           {index == '0' ? 

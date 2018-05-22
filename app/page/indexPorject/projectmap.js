@@ -12,7 +12,8 @@ import {
   ImageBackground,
   ScrollView
 } from 'react-native';
-import { Table, TableWrapper, Row, Rows, Col, Cell} from 'react-native-table-component';
+// import { Table, TableWrapper, Row, Rows, Col, Cell } from 'react-native-table-component';
+import { Table, TableWrapper, Row, Rows, Col, Cell } from '../../../Resources/react-native-table-component';
 import { setSpText, scaleSize } from '../../algorithm/company';
 import Header from '../../component/header';
 import Mask from '../../component/Mask';

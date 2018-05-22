@@ -116,6 +116,7 @@ export const loginStyle = StyleSheet.create({
     flex:1,
     flexDirection: 'row',    
     justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   MyListPng:{
     width: scaleSize(56),

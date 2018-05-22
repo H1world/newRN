@@ -8,7 +8,16 @@ class HomeStore {
   @observable basicData = '';
   @observable matchIndexDate = [];
   @observable projectgameid = '';
-
+  @observable matchType = '';
+  @observable gameid = '';
+  @observable stageid = '';
+  @observable matchname = '';
+  @observable mAddTime1 = '';
+  @observable mAddTime2 = '';
+  @observable mAddTime3 = '';
+  @observable mAddTime4 = '';
+  @observable mSigntype = {};
+  @observable mSharestatus = '';
 
   @action
   setBasicData(info) {
@@ -23,6 +32,47 @@ class HomeStore {
   @action
   setProjectgameid(info) {
     this.projectgameid = info
+  }
+
+  @action
+  setMatchType(info) {
+    this.matchType = info
+  }
+  @action
+  setGameid(info) {
+    this.gameid = info
+  }
+  @action
+  setStageid(info) {
+    this.stageid = info
+  }
+  @action
+  setMatchName(info) {
+    this.matchname = info
+  }
+  @action
+  setMatchAddT1(info) {
+    this.mAddTime1 = info
+  }
+  @action
+  setMatchAddT2(info) {
+    this.mAddTime2 = info
+  }
+  @action
+  setMatchAddT3(info) {
+    this.mAddTime3 = info
+  }
+  @action
+  setMatchAddT4(info) {
+    this.mAddTime4 = info
+  }
+  @action
+  setMatchSigntype(info) {
+    this.mSigntype = info
+  }
+  @action
+  setMatchSharestatus(info) {
+    this.mSharestatus = info
   }
 
   @computed

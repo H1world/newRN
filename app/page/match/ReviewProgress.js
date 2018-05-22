@@ -28,6 +28,7 @@ export default class reviewProgress extends Component {
       beforData: this.props.homeStore.basicData,
       date:'',
       tableHead: ['评委姓名', '联系方式', '已评', '未评', '进度'],
+      loading: '',      
     }
   };
 
@@ -36,6 +37,9 @@ export default class reviewProgress extends Component {
   };
 
   async gitRPlist() {
+    this.setState({
+      loading: false,
+    })
     let getprojectgameid = this.props.homeStore.projectgameid;
     let url = this.props.homeStore.api + 'mobile/system/getRaterPingProcessByProjectGameId';
     let data = {
@@ -43,7 +47,6 @@ export default class reviewProgress extends Component {
     };
     const res = await apiBa(url, data, "POST", this.state.beforData.token, this.props);
     if (res.result == "success") {
-      
       if (res.data != ''){
         for (let i in res.data){
           res.data[i]['selecttype'] = false;
@@ -51,6 +54,7 @@ export default class reviewProgress extends Component {
       }
       this.setState({
         date: res.data,
+        loading: true,
       });
     } else {
       Alert.alert(res.describe);
@@ -124,6 +128,7 @@ export default class reviewProgress extends Component {
     }
     return (
       <View style={{ backgroundColor: '#fff', flex: 1 }}>
+        {this.state.loading == false ? <Mask /> : null}         
         <Header
           titleItem={() => '评审进度'}
           backFunc={() => this}

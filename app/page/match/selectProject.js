@@ -40,6 +40,7 @@ export default class selectPage extends Component {
     this.setState({
       loading: false,
     })
+    console.log(projectname)
     let getprojectgameid = this.props.homeStore.projectgameid;
     let url = this.props.homeStore.api + 'mobile/system/getSignUpCompetitionProjectList';
     let data = {
@@ -50,14 +51,20 @@ export default class selectPage extends Component {
       projectname: projectname,
     };
     const res = await apiBa(url, data, "POST", this.state.beforData.token, this.props);
+    console.log(res)
+    
     if (res.result == "success") {
-        this.setState({
-          data: res.data.projectlist,
-          loading: true,
-        });
         if (res.data.projectlist.length == 0){
           this.setState({
+            data: res.data.projectlist,
             nodata:true,
+            loading: true,
+          });
+        }else{
+          this.setState({
+            data: res.data.projectlist,
+            loading: true,
+            nodata: false,
           });
         }
     }

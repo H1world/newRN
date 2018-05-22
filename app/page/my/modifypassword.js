@@ -12,6 +12,7 @@ import {
   StatusBar,
   Platform,
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { loginStyle } from '../../layout/loginStyle';
 import Header from '../../component/header';
 import { Toast } from 'antd-mobile';
@@ -79,11 +80,18 @@ export default class modifyPassword extends Component {
     }
     const res = await apiBa(url, data, "POST", this.state.beforData.token, this.props);
     if (res.result == "success") {
+      const resetLogin = NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Login' })//要跳转到的页面名字
+        ]
+      });
       Toast.success('修改成功，请您重新登录',30);
       setTimeout(() => {
         Toast.hide();
         global.MySorage._remove('userList');
-        this.props.navigation.navigate('Login');
+        // this.props.navigation.navigate('Login');
+        this.props.navigation.dispatch(resetLogin);        
       }, 3000);
     }
   }

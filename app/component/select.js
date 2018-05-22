@@ -122,18 +122,6 @@ export default class Header extends Component {
     });
   };
 
-  // Focus(){
-
-  // }
-  keypress(e){
-    // if (e.which !== 13) return
-    // Toast.fail('点回车了？', 30);
-    // setTimeout(() => {
-    //     Toast.hide();
-    //   }, 500);
-    console.log(e)
-  }
-
   render() {
     return (
       <View style={{ backgroundColor: '#fff' }}>
@@ -152,10 +140,8 @@ export default class Header extends Component {
                 ref="selectText"
                 defaultValue={this.state.selectText}
                 onChangeText={(text) => this.changeText(text)}
-                // onFocus={() => this.Focus()}
-                // onKeyPress={(e)=>this.keypress(e)}
-                // onKeyboardChange={(e) => this.keypress(e)}
-                // returnKeyType="search"
+                onSubmitEditing={() => this.selectClick()}
+                returnKeyType='done'
                 underlineColorAndroid='transparent'
                 placeholder='搜索项目' />
             </View> 

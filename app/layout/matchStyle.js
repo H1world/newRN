@@ -19,8 +19,20 @@ export const matchStyle = StyleSheet.create({
     fontSize: scaleSize(30),
     color: '#f28109',
   },
+  fz_36_333: {
+    fontSize: scaleSize(36),
+    color: '#333',
+  },
   fz_42_333: {
     fontSize: scaleSize(42),
+    color: '#333',
+  },
+  fz_48_333: {
+    fontSize: scaleSize(48),
+    color: '#333',
+  },
+  fz_60_333: {
+    fontSize: scaleSize(60),
     color: '#333',
   },
   mr_100:{
@@ -28,6 +40,9 @@ export const matchStyle = StyleSheet.create({
   },
   mr_27:{
     marginRight: scaleSize(27)
+  },
+  ml_36: {
+    marginLeft: scaleSize(36)
   },
   mr_36: {
     marginRight: scaleSize(36)
@@ -41,6 +56,12 @@ export const matchStyle = StyleSheet.create({
   },
   mb_10: {
     marginBottom: scaleSize(10),
+  },
+  mb_20: {
+    marginBottom: scaleSize(20),
+  },
+  mb_30: {
+    marginBottom: scaleSize(30),
   },
   mb_48: {
     marginBottom: scaleSize(48),
@@ -61,6 +82,9 @@ export const matchStyle = StyleSheet.create({
   },
   pb_0: {
     paddingBottom: scaleSize(0),
+  },
+  pb_36: {
+    paddingBottom: scaleSize(36),
   },
   width_500: {
     width: scaleSize(500),
@@ -106,7 +130,8 @@ export const matchStyle = StyleSheet.create({
     borderBottomWidth: 0,
     flexDirection: 'row',
     borderColor: '#dedede',
-    marginTop: scaleSize(36),
+    marginTop: scaleSize(20),
+    marginBottom: scaleSize(10),
     paddingTop: scaleSize(45),
     paddingLeft: scaleSize(30),
     paddingBottom: scaleSize(30),
@@ -115,6 +140,7 @@ export const matchStyle = StyleSheet.create({
     shadowOffset: { width: -2, height: 3 },
     shadowRadius: 5,
     shadowOpacity: .4,
+    elevation: 4,            
   },
   matchinsidein:{
     flexDirection: 'row',
@@ -144,6 +170,7 @@ export const matchStyle = StyleSheet.create({
   },
   font_1:{
     fontSize: scaleSize(48),
+    lineHeight: scaleSize(50),
     color:'#333',
   },
   icon:{
@@ -171,6 +198,15 @@ export const matchStyle = StyleSheet.create({
     marginTop: scaleSize(30),
     marginBottom: scaleSize(30),
     flexDirection: 'row',
+  },
+  switch_type: {
+    height: scaleSize(132),
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+    borderTopWidth: scaleSize(1),
+    borderBottomWidth: scaleSize(1),
+    borderColor:'#dedede',
+    alignItems: 'center',
   },
   editf_box:{
     flex: 1,
@@ -295,6 +331,7 @@ export const matchStyle = StyleSheet.create({
     shadowOffset: { width: -2, height: 3 },
     shadowRadius: 5,
     shadowOpacity: .4,
+    elevation: 4,
   },
   table_title:{
     height: scaleSize(102),
@@ -426,7 +463,9 @@ export const matchStyle = StyleSheet.create({
   // },
   rankList:{
     width: width,
-    paddingLeft:scaleSize(36),
+    // paddingLeft:scaleSize(36),
+    // paddingLeft: scaleSize(36),
+    // justifyContent: 'center',
   },
   summaryechart:{
     width: width,
@@ -477,5 +516,32 @@ export const matchStyle = StyleSheet.create({
   },
   map_table_fontBox:{
     height: scaleSize(110),
+  },
+  //评委设置
+  setupTop:{
+    borderTopWidth:scaleSize(1),
+    borderColor: '#dedede',
+    paddingLeft: scaleSize(36),
+    paddingRight: scaleSize(36),
+    paddingTop: scaleSize(46),
+    paddingBottom:scaleSize(46),
+  },
+  setuptopBox:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    // flexDirection: 'row',
+    paddingLeft: scaleSize(98),
+    paddingRight:scaleSize(98),
+  },
+  setupboxTr:{
+    flexDirection: 'row',    
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop:scaleSize(62),
+  },
+  setupboxLi:{
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 })

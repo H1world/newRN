@@ -8,8 +8,10 @@ export const homeStyle = StyleSheet.create({
     height: scaleSize(132),
     backgroundColor:'#fff',  
     alignItems: 'center',
-    marginTop: scaleSize(60),
     justifyContent: 'center',  
+  },
+  marginTop_60: {
+    marginTop: scaleSize(60),
   },
   titleImg:{
     width: scaleSize(64),
@@ -125,6 +127,7 @@ export const homeStyle = StyleSheet.create({
     backgroundColor:'#fff',
     borderRadius: scaleSize(18),
     paddingBottom: scaleSize(68),
+    elevation: 4,
   },
   overlist_1_titel:{
     color:'#259461',
@@ -175,6 +178,7 @@ export const homeStyle = StyleSheet.create({
     backgroundColor:'#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    elevation: 4,    
   },
   echartList:{
     width: width - scaleSize(100),
@@ -192,9 +196,11 @@ export const homeStyle = StyleSheet.create({
     shadowRadius: 5,
     shadowOpacity: .4,
     backgroundColor: '#fff',
+    marginTop: scaleSize(10),    
     marginBottom: scaleSize(30),
     alignItems: 'center',
     justifyContent: 'center',
+    elevation: 4,        
   },
   demandInline:{
     flexDirection: 'row',

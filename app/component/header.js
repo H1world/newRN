@@ -19,12 +19,13 @@ const { width, height } = Dimensions.get('window');
   headerBox:{
     flexDirection: 'row',
     height: scaleSize(132),
-    alignItems: 'center',
+    // alignItems: 'center',
   },
   headerGoUp : {
     width: scaleSize(66),
     height: scaleSize(66),
-    marginLeft: scaleSize(36)
+    marginLeft: scaleSize(36),
+    marginTop: scaleSize(33),
   },
    topHeight:{
     width: scaleSize(60),
@@ -32,8 +33,8 @@ const { width, height } = Dimensions.get('window');
     
   },
   headerText:{
-    width: width - scaleSize(204),
-    // flex:1,
+    // width: width - scaleSize(204),
+    flex:1,
     height: scaleSize(132),
     alignItems: 'center',
     justifyContent: 'center', 
@@ -43,9 +44,12 @@ const { width, height } = Dimensions.get('window');
      color: '#333',
    },
    headerRight:{
+     height: scaleSize(132),
+     lineHeight: scaleSize(132),
      fontSize: scaleSize(42),
      color: '#259461',
-     marginRight: scaleSize(36)
+     position: 'absolute',
+     right: scaleSize(36),
    },
    searchBox: {
      height: scaleSize(90),
@@ -161,6 +165,7 @@ export default class Header extends Component{
               </TouchableWithoutFeedback>
               : <Text style={headerStyle.titleFont} numberOfLines={1}>{this.renderItem()}</Text> }
           </View>
+          <View style={headerStyle.headerGoUp}></View>
           <TouchableOpacity onPress={() => this.sureGo()}>
             {this.headerRight() == true ? <Text style={headerStyle.headerRight}>{this.props.headRightText()}</Text> : null}
           </TouchableOpacity>
