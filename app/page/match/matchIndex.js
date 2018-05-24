@@ -118,7 +118,8 @@ export default class matchPage extends Component {
     this.props.homeStore.setMatchAddT4('');
     this.props.homeStore.setMatchSigntype({});
     this.props.homeStore.setMatchSharestatus(false);
-    this.props.navigation.navigate('addpage')
+    // console.log('跳转')
+    this.props.navigation.navigate('addpage');
   };
 
   render() {

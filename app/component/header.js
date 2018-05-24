@@ -48,8 +48,9 @@ const { width, height } = Dimensions.get('window');
      lineHeight: scaleSize(132),
      fontSize: scaleSize(42),
      color: '#259461',
-     position: 'absolute',
-     right: scaleSize(36),
+    //  position: 'absolute',
+    //  right: scaleSize(36),
+    // backgroundColor:'#b00',
    },
    searchBox: {
      height: scaleSize(90),
@@ -166,7 +167,7 @@ export default class Header extends Component{
               : <Text style={headerStyle.titleFont} numberOfLines={1}>{this.renderItem()}</Text> }
           </View>
           <View style={headerStyle.headerGoUp}></View>
-          <TouchableOpacity onPress={() => this.sureGo()}>
+          <TouchableOpacity style={{ position: 'absolute', right: scaleSize(36),}} onPress={() => this.sureGo()}>
             {this.headerRight() == true ? <Text style={headerStyle.headerRight}>{this.props.headRightText()}</Text> : null}
           </TouchableOpacity>
         </View>

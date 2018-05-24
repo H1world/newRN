@@ -82,7 +82,7 @@ export default class matchAdmin extends Component {
             </TouchableOpacity>
             <View style={matchStyle.adminContent}>
             </View>
-            <TouchableOpacity style={[matchStyle.adminBox, { backgroundColor: '#ccf8f1' }]} onPress={() => this.props.navigation.navigate('signupproject')}>
+            <TouchableOpacity style={[matchStyle.adminBox, { backgroundColor: '#ccf8f1' }]} onPress={() => this.props.navigation.navigate('distribution', { match_id: params.match_id })}>
               <Text style={matchStyle.adminfont}>项目分配</Text>
               <Image
                 source={require('../../image/icon_projectassignments.png')}

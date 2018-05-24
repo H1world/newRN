@@ -27,6 +27,14 @@ export const matchStyle = StyleSheet.create({
     fontSize: scaleSize(42),
     color: '#333',
   },
+  fz_42_999: {
+    fontSize: scaleSize(42),
+    color: '#999',
+  },
+  fz_42_259461: {
+    fontSize: scaleSize(42),
+    color: '#259461',
+  },
   fz_48_333: {
     fontSize: scaleSize(48),
     color: '#333',
@@ -34,6 +42,10 @@ export const matchStyle = StyleSheet.create({
   fz_60_333: {
     fontSize: scaleSize(60),
     color: '#333',
+  },
+  fz_33_999:{
+    fontSize: scaleSize(33),
+    color: '#999',
   },
   mr_100:{
     marginRight: scaleSize(100),
@@ -49,6 +61,9 @@ export const matchStyle = StyleSheet.create({
   },
   mt_42:{
     marginTop: scaleSize(42),
+  },
+  mt_36: {
+    marginTop: scaleSize(36),
   },
   mtb_48: {
     marginTop: scaleSize(48),
@@ -95,8 +110,27 @@ export const matchStyle = StyleSheet.create({
   borderTop_1:{
     borderTopWidth:scaleSize(1),
   },
+  borderTop_1_eee: {
+    borderTopWidth: scaleSize(1),
+    borderColor:'#eee'
+  },
+  borderBottom_1_dedede: {
+    borderBottomWidth: scaleSize(1),
+    borderColor: '#eee'
+  },
+  borderColor_de:{
+    borderColor: '#dedede',
+  },
+  borderColor_blue: {
+    borderColor: '#259461',
+  },
   fl_R:{
     justifyContent: 'flex-end'
+  },
+  line_30_f0:{
+    width:width,
+    height:scaleSize(30),
+    backgroundColor:'#f0f0f0'
   },
   text_cen:{
     textAlign: 'center',
@@ -543,5 +577,152 @@ export const matchStyle = StyleSheet.create({
     flex:1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  tablehorizontal:{
+    flexDirection: 'row',
+    height:scaleSize(117),
+    borderBottomWidth:scaleSize(1),
+    borderColor:'#dedede'
+  },
+  tableText:{
+    fontSize:scaleSize(42),
+    color:'#333',
+    paddingLeft: scaleSize(36),
+    paddingRight:scaleSize(36),
+    lineHeight:scaleSize(117),
+  },
+  tableSelectText:{
+    fontSize: scaleSize(42),
+    color: '#259461',
+    paddingLeft: scaleSize(36),
+    paddingRight: scaleSize(36),
+    lineHeight: scaleSize(117),    
+  },
+  addClass:{
+    height:scaleSize(132),
+    width:width,
+    paddingLeft: scaleSize(42),
+    paddingRight: scaleSize(42),
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: scaleSize(1),
+    borderColor: '#dedede'
+  },
+  icon_addclass:{
+    width: scaleSize(72),
+    height:scaleSize(72),
+    marginRight:scaleSize(42),
+  },
+  smallList:{
+    height:scaleSize(225),
+    paddingTop:scaleSize(30),
+    flexDirection: 'row',
+  },
+  classImg:{
+    width:scaleSize(172),
+    height: scaleSize(172),
+    borderRadius:scaleSize(30),
+  },
+  classContent:{
+    flex:1,
+    marginLeft:scaleSize(42),
+    borderBottomWidth: scaleSize(1),
+    borderColor: '#dedede',
+  },
+  classDele:{
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    width: scaleSize(48),
+    height:scaleSize(48),
+  },
+  classtitle:{
+    height:scaleSize(100),
+    lineHeight:scaleSize(100),
+    fontSize:scaleSize(42),
+    color:'#999',
+    paddingLeft: scaleSize(36),
+    paddingRight:scaleSize(36),
+  },
+  mobelTop:{
+    height: height,
+    width: width,
+    position: 'absolute',
+    backgroundColor: '#fff',
+    top:0,
+    zIndex: 9,
+    backgroundColor: 'rgba(0, 0, 0, 0)'
+  },
+  mobel:{
+    height:scaleSize(708),
+    width:width,
+    position: 'absolute',
+    backgroundColor: '#fff',
+    bottom: 0,
+    zIndex: 10,
+  },
+  mobelTitle:{
+    flexDirection: 'row',    
+    height:scaleSize(117),
+    width:width,
+    paddingLeft: scaleSize(36),
+    paddingRight: scaleSize(36),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modeltitle:{
+    height: scaleSize(96),
+    lineHeight: scaleSize(96),
+    paddingLeft: scaleSize(36),
+    paddingRight:scaleSize(36),
+  },
+  modelList:{
+    paddingLeft: scaleSize(50),
+    paddingRight: scaleSize(50),
+    flexDirection: 'row',   
+    flexWrap:'wrap'
+  },
+  modelList_s:{
+    justifyContent: 'center', 
+    width: scaleSize(178),
+    height: scaleSize(88),
+    borderWidth: scaleSize(1),
+    // borderColor: '#dedede',
+    borderRadius: scaleSize(10),
+    marginLeft:scaleSize(12),
+    marginRight:scaleSize(12),
+    marginBottom: scaleSize(24)    
+  },
+  modelText:{
+    textAlign:'center',
+  },
+  modelSText:{
+    textAlign: 'center',
+    color:'#259461',
+  },
+  distributionBtn:{
+    justifyContent: 'flex-end', 
+    flexDirection: 'row', 
+    backgroundColor:'#fff',
+    borderTopWidth:scaleSize(1),
+    borderColor:'#eee',
+  },
+  distributionBtn_b:{
+    width: scaleSize(300),
+    height:scaleSize(150),
+    justifyContent: 'center', 
+    backgroundColor:'#259461',
+    marginRight:scaleSize(20),
+    borderRadius:scaleSize(8),
+  },
+  btn_t:{
+    textAlign: 'center',
+    color:'#fff',
+    fontSize:scaleSize(48)
+  },
+  nofont:{
+    fontSize:scaleSize(42),
+    color:'#999',
+    marginBottom:scaleSize(30)
   }
 })

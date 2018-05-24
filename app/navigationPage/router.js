@@ -32,6 +32,9 @@ import ProjectMap from '../page/indexPorject/projectmap';      //index项目地�
 import matchType from '../page/match/matchtype';      //赛事类别
 import matchStage from '../page/match/matchstage';      //赛事阶段
 import SetUpIndex from '../page/match/judgesSetUp/setUpIndex';      //评审设置
+import AddClassPage from '../page/match/judgesSetUp/addclasspage';      //评审设置-->添加分组
+import addReview from '../page/match/judgesSetUp/addreview';      //评审设置-->添加评委
+import Distribution from '../page/match/projectdistribution';      //项目分配
 
 
 import modifyPassword from '../page/my/modifypassword';      //修改密码
@@ -256,6 +259,15 @@ export const RootStack = StackNavigator({
   },
   setupindex: {
     screen: SetUpIndex,
+  },  
+  addclasspage: {
+    screen: AddClassPage,
+  },
+  addreview: {
+    screen: addReview,
+  }, 
+  distribution: {
+    screen: Distribution,
   },  
 },
 {

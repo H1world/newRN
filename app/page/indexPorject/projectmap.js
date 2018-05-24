@@ -150,7 +150,7 @@ export default class ProjectMap extends Component {
       <View style={{ backgroundColor: '#fff', flex: 1 }}>
         {this.state.loading == false ? <Mask /> : null}
         <Header
-          titleItem={() => '项目汇总'}
+          titleItem={() => '项目地图'}
           backFunc={() => this}
         />
         <ScrollView style={matchStyle.RP_sceoll}>
